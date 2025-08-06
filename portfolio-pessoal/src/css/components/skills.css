@@ -1,0 +1,39 @@
+/portfolio-pessoal/portfolio-pessoal/src/css/components/skills.css
+
+.skills {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.skills h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.skills-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+    width: 100%;
+}
+
+.skill {
+    background-color: var(--secondary-color);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.skill:hover {
+    transform: scale(1.05);
+}
+
+.skill p {
+    margin: 0.5rem 0 0;
+    font-size: 1rem;
+    color: var(--text-color);
+}
