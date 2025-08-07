@@ -4,7 +4,7 @@ Este é um site de portfólio pessoal moderno e responsivo, projetado para ser h
 
 ## Características
 
-- Design moderno e responsivo
+- Design moderno e responsiv
 - Navegação suave com rolagem
 - Menu mobile para dispositivos pequenos
 - Animações e transições elegantes
@@ -128,4 +128,4 @@ Se você tiver dúvidas ou precisar de ajuda para personalizar este template, si
 
 ---
 
-© 2023 Seu Nome. Todos os direitos reservados.tar e publicar o site dnv
+© 2023 Seu Nome. Todos os direitos reservados.tar e publicar o site dnv# Site atualizado em Thu Aug  7 00:31:13 UTC 2025
