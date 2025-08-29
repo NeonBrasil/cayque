@@ -267,10 +267,6 @@ document.addEventListener('DOMContentLoaded', function() {
         skillsObserver.observe(skillsSection);
     }
 
-    // Removido efeito de hover nos cards de projetos para manter o texto sempre visível na mesma posição
-    // Não é necessário manipular o transform via JavaScript, pois o CSS já mantém o texto fixo
-
-
     // Adicionar botão de voltar ao topo
     const createBackToTopButton = function() {
         const button = document.createElement('button');

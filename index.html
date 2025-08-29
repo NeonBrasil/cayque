@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Portfólio</title>
+    <title data-translate="page-title">Meu Portfólio</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo">Portfólio</div>
+                <div class="logo" data-translate="logo">Portfólio</div>
                 <ul class="nav-links">
                     <li><a href="#inicio" data-translate="nav-home">Início</a></li>
                     <li><a href="#sobre" data-translate="nav-about">Sobre Mim</a></li>
@@ -46,12 +46,12 @@
     <section id="inicio" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Olá, eu sou o <span class="highlight">Cayque Cicarelli</span></h1>
-                <h2>Segurança da Informação | Prevenção Digital | Awareness & OSINT | DLP & Gestão de Riscos | Comunicador & Escritor</h2>
-                <p>Transformando dados em segurança</p>
+                <h1><span data-translate="hero-greeting">Olá, eu sou o</span> <span class="highlight">Cayque Cicarelli</span></h1>
+                <h2 data-translate="hero-title">Segurança da Informação | Prevenção Digital | Awareness & OSINT | DLP & Gestão de Riscos | Comunicador & Escritor</h2>
+                <p data-translate="hero-subtitle">Transformando dados em segurança</p>
                 <div class="hero-btns">
-                    <a href="#projetos" class="btn btn-primary">Ver Projetos</a>
-                    <a href="#contato" class="btn btn-secondary">Contato</a>
+                    <a href="#projetos" class="btn btn-primary" data-translate="hero-btn-projects">Ver Projetos</a>
+                    <a href="#contato" class="btn btn-secondary" data-translate="nav-contact">Contato</a>
                 </div>
                 <div class="social-icons">
                     <a href="#" target="_blank"><i class="fab fa-github"></i></a>
@@ -71,7 +71,7 @@
     <section id="sobre" class="about">
         <div class="container">
             <div class="section-header">
-                <h2>Sobre Mim</h2>
+                <h2 data-translate="about-title">Sobre Mim</h2>
                 <div class="underline"></div>
             </div>
             <div class="about-content">
@@ -79,45 +79,45 @@
                     <img src="eu-removebg-preview.png" alt="Minha foto">
                 </div>
                 <div class="about-text">
-                    <h3>Quem sou eu?</h3>
-                    <p>Sou um escritor apaixonado por inovações e tecnologia. Sou Analista de Segurança da Informação com experiência em DLP, SIEM (Splunk), OSINT e projetos de conscientização. Atuo na prevenção de vazamentos, análise de riscos e comunicação estratégica em cibersegurança. Estudante de Ciência da Computação, tenho certificações por Google, Cisco, Microsoft e FGV. Apaixonado por tecnologia, ensino e escrita, busco unir conhecimento técnico e criatividade para fortalecer a segurança digital nas empresas.</p>
+                    <h3 data-translate="about-who-am-i">Quem sou eu?</h3>
+                    <p data-translate="about-description">Sou um escritor apaixonado por inovações e tecnologia. Sou Analista de Segurança da Informação com experiência em DLP, SIEM (Splunk), OSINT e projetos de conscientização. Atuo na prevenção de vazamentos, análise de riscos e comunicação estratégica em cibersegurança. Estudante de Ciência da Computação, tenho certificações por Google, Cisco, Microsoft e FGV. Apaixonado por tecnologia, ensino e escrita, busco unir conhecimento técnico e criatividade para fortalecer a segurança digital nas empresas.</p>
                     
-                    <h3>Minhas Habilidades</h3>
+                    <h3 data-translate="about-skills-title">Minhas Habilidades</h3>
                     <div class="skills">
                         <div class="skill">
-                            <span>Investigação e Prevenção de Vazamentos</span>
+                            <span data-translate="skill-1">Investigação e Prevenção de Vazamentos</span>
                             <div class="skill-bar">
                                 <div class="skill-level" style="width: 95%"></div>
                             </div>
                         </div>
                         <div class="skill">
-                            <span>Comunicação Técnica e Awareness</span>
+                            <span data-translate="skill-2">Comunicação Técnica e Awareness</span>
                             <div class="skill-bar">
                                 <div class="skill-level" style="width: 90%"></div>
                             </div>
                         </div>
                         <div class="skill">
-                            <span>Inteligência de Ameaças (OSINT)</span>
+                            <span data-translate="skill-3">Inteligência de Ameaças (OSINT)</span>
                             <div class="skill-bar">
                                 <div class="skill-level" style="width: 87%"></div>
                             </div>
                         </div>
                         <div class="skill">
-                            <span>Documentação e Processos</span>
+                            <span data-translate="skill-4">Documentação e Processos</span>
                             <div class="skill-bar">
                                 <div class="skill-level" style="width: 75%"></div>
                             </div>
                         </div>
                         <div class="skill">
-                            <span>Splunk e SPL</span>
+                            <span data-translate="skill-5">Splunk e SPL</span>
                             <div class="skill-bar">
                                 <div class="skill-level" style="width: 70%"></div>
                             </div>
                         </div>
-                        <span>E muito mais!</span>
+                        <span data-translate="skill-more">E muito mais!</span>
                     </div>
                     
-                    <a href="CAYQUE GASTÓN CICARELLI - Currículo.pdf" class="btn btn-primary">Download CV</a>
+                    <a href="#" id="download-cv" class="btn" data-translate="download-cv">Download CV</a>
                 </div>
             </div>
         </div>
@@ -126,14 +126,13 @@
     <section id="projetos" class="projects">
         <div class="container">
             <div class="section-header">
-                <h2>Meus Projetos</h2>
+                <h2 data-translate="projects-title">Meus Projetos</h2>
                 <div class="underline"></div>
             </div>
             <div class="project-filters">
-                <button class="filter-btn active" data-filter="all">Todos</button>
-                <button class="filter-btn" data-filter="web">Awareness</button>
-                <button class="filter-btn" data-filter="app">Escrita</button>
-                
+                <button class="filter-btn active" data-filter="all" data-translate="filter-all">Todos</button>
+                <button class="filter-btn" data-filter="web" data-translate="filter-awareness">Awareness</button>
+                <button class="filter-btn" data-filter="app" data-translate="filter-writing">Escrita</button>
             </div>
             <div class="projects-grid">
                 <div class="project-card" data-category="web">
@@ -141,16 +140,15 @@
                        <!-- <img src="https://via.placeholder.com/600x400" > -->
                     </div>
                     <div class="project-info">
-                        <h3>SIA: Security & Information Academy</h3>
-                        <p>Projeto para ensino de segurança da informação gratuito desde o básico até o avançado.</p>
+                        <h3 data-translate="project-1-title">SIA: Security & Information Academy</h3>
+                        <p data-translate="project-1-description">Projeto para ensino de segurança da informação gratuito desde o básico até o avançado.</p>
                         <div class="project-tags">
-                            <span>Awareness</span>
+                            <span data-translate="filter-awareness">Awareness</span>
                             <span>Firebase</span>
-                            <span>Documentação</span>
+                            <span data-translate="tag-documentation">Documentação</span>
                         </div>
                         <div class="project-links">
                             <a href="https://cyberguard-pro-27c29.web.app" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-                            
                         </div>
                     </div>
                 </div>
@@ -159,15 +157,14 @@
                       <!--  <img src="https://via.placeholder.com/600x400" > -->
                     </div>
                     <div class="project-info">
-                        <h3>Awareness & Tech News</h3>
-                        <p>Projeto executado na Edenred Brasil. Publicações semanalmente sobre segurança da informação e tecnologia com foco em Awareness.</p>
+                        <h3 data-translate="project-2-title">Awareness & Tech News</h3>
+                        <p data-translate="project-2-description">Projeto executado na Edenred Brasil. Publicações semanalmente sobre segurança da informação e tecnologia com foco em Awareness.</p>
                         <div class="project-tags">
-                            <span>Awareness</span>
-                            <span>Comunicação</span>
+                            <span data-translate="filter-awareness">Awareness</span>
+                            <span data-translate="tag-communication">Comunicação</span>
                         </div>
                         <div class="project-links">
                             <a href="https://www.linkedin.com/posts/cayque-cicarelli_tenho-o-prazer-de-compartilhar-o-projeto-activity-7296226089197092865-TmTR?utm_source=share&utm_medium=member_desktop&rcm=ACoAADTfqmcBmxNanmjQ6qCelFFVm_G6ZXhNFYc" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-                            
                         </div>
                     </div>
                 </div>
@@ -176,15 +173,14 @@
                     <!--    <img src="https://via.placeholder.com/600x400"> -->
                     </div>
                     <div class="project-info">
-                        <h3>Palestrante Especialista em Tecnologia</h3>
-                        <p>Palestras sobre tecnologia para público de todas as idades. Uma das minhas palestras foi na parôquia São João Batista, onde mostrei como a tecnologia pode ser usada para melhorar a vida das pessoas.</p>
+                        <h3 data-translate="project-3-title">Palestrante Especialista em Tecnologia</h3>
+                        <p data-translate="project-3-description">Palestras sobre tecnologia para público de todas as idades. Uma das minhas palestras foi na parôquia São João Batista, onde mostrei como a tecnologia pode ser usada para melhorar a vida das pessoas.</p>
                         <div class="project-tags">
-                            <span>Palestra</span>
-                            <span>Comunicação</span>
+                            <span data-translate="tag-lecture">Palestra</span>
+                            <span data-translate="tag-communication">Comunicação</span>
                         </div>
                         <div class="project-links">
                             <a href="https://www.linkedin.com/posts/cayque-cicarelli_finalmente-depois-de-muita-espera-consegui-activity-6987832625465831426-sILv?utm_source=share&utm_medium=member_desktop&rcm=ACoAADTfqmcBmxNanmjQ6qCelFFVm_G6ZXhNFYc" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-                            
                         </div>
                     </div>
                 </div>
@@ -193,14 +189,11 @@
                     <!--    <img src="https://via.placeholder.com/600x400"> -->
                     </div>
                     <div class="project-info">
-                        <h3>O Castelo da Imaginação</h3>
-                        <p>Livro infanto-juvenil que escrevi em 2019.
-                            "Em 1472 no Multiverso Aquar, um pequeno grupo de aventureiros estão à procura do tesouro de Estor Murc. Durante essa jornada eles descobrem coisas incríveis, como o livro de todas as magias e o castelo da imaginação. O Castelo é um local extremamente mágico. Utilizando os poderes do castelo, o individuo poderá criar basicamente tudo apenas usando o poder da imaginação."
-                        </p>
+                        <h3 data-translate="project-4-title">O Castelo da Imaginação</h3>
+                        <p data-translate="project-4-description">Livro infanto-juvenil que escrevi em 2019. "Em 1472 no Multiverso Aquar, um pequeno grupo de aventureiros estão à procura do tesouro de Estor Murc. Durante essa jornada eles descobrem coisas incríveis, como o livro de todas as magias e o castelo da imaginação. O Castelo é um local extremamente mágico. Utilizando os poderes do castelo, o individuo poderá criar basicamente tudo apenas usando o poder da imaginação."</p>
                         <div class="project-tags">
-                            <span>Escrita</span>
-                            <span>Criatividade</span>
-                            
+                            <span data-translate="filter-writing">Escrita</span>
+                            <span data-translate="tag-creativity">Criatividade</span>
                         </div>
                         <div class="project-links">
                             <a href="https://www.linkedin.com/posts/cayque-cicarelli_udemy-clubedeautores-livro-activity-6988218512708112385-tDeJ?utm_source=share&utm_medium=member_desktop&rcm=ACoAADTfqmcBmxNanmjQ6qCelFFVm_G6ZXhNFYc" target="_blank"><i class="fas fa-external-link-alt"></i></a>
@@ -210,7 +203,7 @@
                 </div>
             </div>
             <div class="projects-btn">
-                <a href="#" class="btn btn-primary">Mais Projetos No Futuro</a>
+                <a href="#" class="btn btn-primary" data-translate="more-projects">Mais Projetos No Futuro</a>
             </div>
         </div>
     </section>
@@ -218,7 +211,7 @@
     <section id="contato" class="contact">
         <div class="container">
             <div class="section-header">
-                <h2>Entre em Contato</h2>
+                <h2 data-translate="contact-title">Entre em Contato</h2>
                 <div class="underline"></div>
             </div>
             <div class="contact-content">
@@ -226,45 +219,37 @@
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
                         <div>
-                            <h3>Email</h3>
+                            <h3 data-translate="contact-email">Email</h3>
                             <p>cayquecicarelli@gmail.com</p>
                         </div>
                     </div>
-                  <!--  <div class="contact-item">
-                         <i class="fas fa-phone"></i>
-                        <div>
-                            <h3>Telefone</h3>
-                            <p>(00) 12345-6789</p>
-                        </div>
-                    </div>-->
                     <div class="contact-item">
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
-                            <h3>Localização</h3>
-                            <p>São Paulo, Brasil</p>
+                            <h3 data-translate="contact-location">Localização</h3>
+                            <p data-translate="contact-location-text">São Paulo, Brasil</p>
                         </div>
                     </div>
                     <div class="social-icons">
                         <a href="https://github.com/NeonBrasil" target="_blank"><i class="fab fa-github"></i></a>
                         <a href="https://www.linkedin.com/in/cayque-cicarelli/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                        
                     </div>
                 </div>
                 <div class="contact-form">
                     <form id="contactForm">
                         <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Seu Nome" required>
+                            <input type="text" id="name" name="name" data-translate-placeholder="form-name" placeholder="Seu Nome" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Seu Email" required>
+                            <input type="email" id="email" name="email" data-translate-placeholder="form-email" placeholder="Seu Email" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" id="subject" name="subject" placeholder="Assunto" required>
+                            <input type="text" id="subject" name="subject" data-translate-placeholder="form-subject" placeholder="Assunto" required>
                         </div>
                         <div class="form-group">
-                            <textarea id="message" name="message" placeholder="Sua Mensagem" required></textarea>
+                            <textarea id="message" name="message" data-translate-placeholder="form-message" placeholder="Sua Mensagem" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+                        <button type="submit" class="btn btn-primary" data-translate="form-submit">Enviar Mensagem</button>
                     </form>
                 </div>
             </div>
@@ -274,17 +259,18 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2025 Meu Portfólio :) Todos os direitos reservados.</p>
+                <p data-translate="footer-copyright">&copy; 2025 Meu Portfólio :) Todos os direitos reservados.</p>
                 <div class="footer-links">
-                    <a href="#inicio">Início</a>
-                    <a href="#sobre">Sobre</a>
-                    <a href="#projetos">Projetos</a>
-                    <a href="#contato">Contato</a>
+                    <a href="#inicio" data-translate="nav-home">Início</a>
+                    <a href="#sobre" data-translate="nav-about">Sobre</a>
+                    <a href="#projetos" data-translate="nav-projects">Projetos</a>
+                    <a href="#contato" data-translate="nav-contact">Contato</a>
                 </div>
             </div>
         </div>
     </footer>
 
+    <script src="translations.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
