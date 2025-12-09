@@ -545,6 +545,7 @@ nav {
 .about-text p {
     margin-bottom: 30px;
     color: var(--text-color-secondary);
+    text-align: justify;
 }
 
 .skills {
@@ -660,6 +661,7 @@ nav {
 .project-info p {
     color: var(--text-color-secondary);
     margin-bottom: 15px;
+    text-align: justify;
 }
 
 .project-tags {
