@@ -358,7 +358,18 @@ function changeLanguage(lang) {
     document.querySelectorAll('[data-translate]').forEach(element => {
         const key = element.getAttribute('data-translate');
         if (translations[lang] && translations[lang][key]) {
-            element.textContent = translations[lang][key];
+            // Se for o botão de download CV, preservar o ícone
+            if (key === 'download-cv') {
+                const icon = element.querySelector('i');
+                element.textContent = translations[lang][key];
+                if (icon) {
+                    element.prepend(icon);
+                } else {
+                    element.innerHTML = '<i class="fas fa-download"></i> ' + translations[lang][key];
+                }
+            } else {
+                element.textContent = translations[lang][key];
+            }
         }
     });
     
