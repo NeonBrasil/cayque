@@ -1,6 +1,6 @@
 # Hi, I'm Cayque Gastón Cicarelli 👋
 I am an Information Security Analyst specialized in GRC and Risk Management, with a solid background in Software Development and Game Design. Currently, I balance my professional career in cybersecurity with independent game development projects.
-**Portifolio link:** [Portifoli Cayque](neonbrasil.github.io/cayque/)
+**Portifolio link:** [Portifoli Cayque](https://neonbrasil.github.io/cayque/)
 
 ## Information Security & GRC
 
