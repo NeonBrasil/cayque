@@ -696,7 +696,10 @@ nav {
 }
 
 .projects-btn {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 /* Seção Contato */

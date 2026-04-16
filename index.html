@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-translate="page-title">Meu Portfólio</title>
+    <title data-translate="page-title">Cayque Cicarelli | Analista de Segurança</title>
+    <meta name="description" content="Portfólio de Cayque Cicarelli — Analista de Segurança da Informação e Game Developer especializado em DLP, SIEM, OSINT, Godot e Ren'Py. São Paulo, Brasil.">
+    <meta property="og:title" content="Cayque Cicarelli | Analista de Segurança & Game Developer">
+    <meta property="og:description" content="Especialista em DLP, OSINT, SIEM e Awareness em cibersegurança. Também desenvolvedor de jogos com Godot e Ren'Py.">
+    <meta property="og:image" content="cayque.png">
+    <meta property="og:type" content="website">
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -21,7 +26,7 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo" data-translate="logo">Portfólio</div>
+                <div class="logo" data-translate="logo">Cayque Cicarelli</div>
                 <ul class="nav-links">
                     <li><a href="#inicio" data-translate="nav-home">Início</a></li>
                     <li><a href="#sobre" data-translate="nav-about">Sobre Mim</a></li>
@@ -55,9 +60,8 @@
                     <a href="#contato" class="btn btn-secondary" data-translate="nav-contact">Contato</a>
                 </div>
                 <div class="social-icons">
-                    <a href="https://github.com/NeonBrasil" target="_blank"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/cayque-cicarelli/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    
+                    <a href="https://github.com/NeonBrasil" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/cayque-cicarelli/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
         </div>
@@ -77,7 +81,7 @@
             </div>
             <div class="about-content">
                 <div class="about-img">
-                    <img src="cayque.png" alt="Minha foto">
+                    <img src="cayque.png" alt="Cayque Cicarelli">
                 </div>
                 <div class="about-text">
                     <h3 data-translate="about-who-am-i">Quem sou eu?</h3>
@@ -115,6 +119,18 @@
                                 <div class="skill-level" style="width: 76%"></div>
                             </div>
                         </div>
+                        <div class="skill">
+                            <span data-translate="skill-6">Desenvolvimento de Jogos (Godot / Ren'Py)</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <span data-translate="skill-7">Segurança de Redes</span>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 80%"></div>
+                            </div>
+                        </div>
                         <span data-translate="skill-more">E muito mais!</span>
                     </div>
                     
@@ -136,28 +152,45 @@
                 <button class="filter-btn active" data-filter="all" data-translate="filter-all">Todos</button>
                 <button class="filter-btn" data-filter="web" data-translate="filter-awareness">Awareness</button>
                 <button class="filter-btn" data-filter="app" data-translate="filter-writing">Escrita</button>
+                <button class="filter-btn" data-filter="game" data-translate="filter-game">Jogos</button>
             </div>
             <div class="projects-grid">
+                <!-- 1. DM: Dungeon Music (mais recente) -->
                 <div class="project-card" data-category="game">
-                    <div class="project-img">
-                    <!--    <img src="https://via.placeholder.com/600x400"> -->
-                    </div>
+                    <div class="project-img"></div>
                     <div class="project-info">
-                        <h3 data-translate="project-5-title">The New Year's School</h3>
-                        <p data-translate="project-5-description">Fiz parte do desenvolvimento do jogo e das medidas de segurança de networking deste jogo na Steam.</p>
+                        <h3 data-translate="project-6-title">DM: Dungeon Music</h3>
+                        <p data-translate="project-6-description">Ferramenta open source para Mestres de RPG (Dungeon Masters), desenvolvida em Python. Gerencie músicas, efeitos sonoros, imagens e apresentações — tudo em um só lugar. Atualizado com frequência.</p>
                         <div class="project-tags">
-                            <span>Godot</span>
-                            <span data-translate="tag-game-dev">Game Developer</span>
+                            <span>Python</span>
+                            <span data-translate="tag-rpg">RPG</span>
+                            <span data-translate="tag-open-source">Open Source</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://store.steampowered.com/app/4134940/The_New_Years_School/?curator_clanid=45830552" target="_blank"><i class="fab fa-steam"></i></a>
+                            <a href="https://github.com/NeonBrasil/DM-Dungeon-Music" target="_blank" rel="noopener noreferrer" title="Repositório GitHub"><i class="fab fa-github"></i></a>
+                            <a href="https://github.com/NeonBrasil/DM-Dungeon-Music/releases" target="_blank" rel="noopener noreferrer" title="Download (.exe)"><i class="fas fa-download"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="project-card" data-category="web">
-                    <div class="project-img">
-                       <!-- <img src="https://via.placeholder.com/600x400" > -->
+                <!-- 2. The New Year's School -->
+                <div class="project-card" data-category="game">
+                    <div class="project-img"></div>
+                    <div class="project-info">
+                        <h3 data-translate="project-5-title">The New Year's School</h3>
+                        <p data-translate="project-5-description">Contribuí no desenvolvimento com Godot e implementei as medidas de segurança de networking deste jogo publicado na Steam.</p>
+                        <div class="project-tags">
+                            <span>Godot</span>
+                            <span data-translate="tag-game-dev">Game Developer</span>
+                            <span data-translate="tag-network-security">Segurança de Redes</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://store.steampowered.com/app/4134940/The_New_Years_School/?curator_clanid=45830552" target="_blank" rel="noopener noreferrer"><i class="fab fa-steam"></i></a>
+                        </div>
                     </div>
+                </div>
+                <!-- 3. SIA: Security & Information Academy -->
+                <div class="project-card" data-category="web">
+                    <div class="project-img"></div>
                     <div class="project-info">
                         <h3 data-translate="project-1-title">SIA: Security & Information Academy</h3>
                         <p data-translate="project-1-description">Projeto para ensino de segurança da informação gratuito desde o básico até o avançado.</p>
@@ -167,30 +200,28 @@
                             <span data-translate="tag-documentation">Documentação</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://cyberguard-pro-27c29.web.app" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="https://cyberguard-pro-27c29.web.app" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
                         </div>
                     </div>
                 </div>
+                <!-- 4. Awareness & Tech News -->
                 <div class="project-card" data-category="web">
-                    <div class="project-img">
-                      <!--  <img src="https://via.placeholder.com/600x400" > -->
-                    </div>
+                    <div class="project-img"></div>
                     <div class="project-info">
                         <h3 data-translate="project-2-title">Awareness & Tech News</h3>
-                        <p data-translate="project-2-description">Projeto executado na Edenred Brasil. Publicações semanalmente sobre segurança da informação e tecnologia com foco em Awareness.</p>
+                        <p data-translate="project-2-description">Publicações semanais sobre segurança da informação e tecnologia na Edenred Brasil, com foco em conscientização de colaboradores.</p>
                         <div class="project-tags">
                             <span data-translate="filter-awareness">Awareness</span>
                             <span data-translate="tag-communication">Comunicação</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://www.linkedin.com/posts/cayque-cicarelli_tenho-o-prazer-de-compartilhar-o-projeto-activity-7296226089197092865-TmTR?utm_source=share&utm_medium=member_desktop&rcm=ACoAADTfqmcBmxNanmjQ6qCelFFVm_G6ZXhNFYc" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="https://www.linkedin.com/posts/cayque-cicarelli_tenho-o-prazer-de-compartilhar-o-projeto-activity-7296226089197092865-TmTR?utm_source=share&utm_medium=member_desktop&rcm=ACoAADTfqmcBmxNanmjQ6qCelFFVm_G6ZXhNFYc" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
                         </div>
                     </div>
                 </div>
+                <!-- 5. Palestrante Especialista em Tecnologia -->
                 <div class="project-card" data-category="web">
-                    <div class="project-img">
-                    <!--    <img src="https://via.placeholder.com/600x400"> -->
-                    </div>
+                    <div class="project-img"></div>
                     <div class="project-info">
                         <h3 data-translate="project-3-title">Palestrante Especialista em Tecnologia</h3>
                         <p data-translate="project-3-description">Palestras sobre tecnologia para público de todas as idades. Uma das minhas palestras foi na parôquia São João Batista, onde mostrei como a tecnologia pode ser usada para melhorar a vida das pessoas.</p>
@@ -199,14 +230,13 @@
                             <span data-translate="tag-communication">Comunicação</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://www.linkedin.com/posts/cayque-cicarelli_finalmente-depois-de-muita-espera-consegui-activity-6987832625465831426-sILv?utm_source=share&utm_medium=member_desktop&rcm=ACoAADTfqmcBmxNanmjQ6qCelFFVm_G6ZXhNFYc" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="https://www.linkedin.com/posts/cayque-cicarelli_finalmente-depois-de-muita-espera-consegui-activity-6987832625465831426-sILv?utm_source=share&utm_medium=member_desktop&rcm=ACoAADTfqmcBmxNanmjQ6qCelFFVm_G6ZXhNFYc" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
                         </div>
                     </div>
                 </div>
+                <!-- 6. O Castelo da Imaginação (2019, mais antigo) -->
                 <div class="project-card" data-category="app">
-                    <div class="project-img">
-                    <!--    <img src="https://via.placeholder.com/600x400"> -->
-                    </div>
+                    <div class="project-img"></div>
                     <div class="project-info">
                         <h3 data-translate="project-4-title">O Castelo da Imaginação</h3>
                         <p data-translate="project-4-description">Livro infanto-juvenil que escrevi em 2019. "Em 1472 no Multiverso Aquar, um pequeno grupo de aventureiros estão à procura do tesouro de Estor Murc. Durante essa jornada eles descobrem coisas incríveis, como o livro de todas as magias e o castelo da imaginação. O Castelo é um local extremamente mágico. Utilizando os poderes do castelo, o individuo poderá criar basicamente tudo apenas usando o poder da imaginação."</p>
@@ -215,14 +245,15 @@
                             <span data-translate="tag-creativity">Criatividade</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://www.linkedin.com/posts/cayque-cicarelli_udemy-clubedeautores-livro-activity-6988218512708112385-tDeJ?utm_source=share&utm_medium=member_desktop&rcm=ACoAADTfqmcBmxNanmjQ6qCelFFVm_G6ZXhNFYc" target="_blank"><i class="fas fa-external-link-alt"></i></a>
-                            <a href="https://www.amazon.com.br/Castelo-Imagina%C3%A7%C3%A3o-Cayque-Gast%C3%B3n-Cicarelli/dp/6590152802" target="_blank"><i class="fab fa-amazon"></i></a>
+                            <a href="https://www.linkedin.com/posts/cayque-cicarelli_udemy-clubedeautores-livro-activity-6988218512708112385-tDeJ?utm_source=share&utm_medium=member_desktop&rcm=ACoAADTfqmcBmxNanmjQ6qCelFFVm_G6ZXhNFYc" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="https://www.amazon.com.br/Castelo-Imagina%C3%A7%C3%A3o-Cayque-Gast%C3%B3n-Cicarelli/dp/6590152802" target="_blank" rel="noopener noreferrer"><i class="fab fa-amazon"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="projects-btn">
-                <a href="#" class="btn btn-primary" data-translate="more-projects">Mais Projetos No Futuro</a>
+                <a href="https://github.com/NeonBrasil" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-translate="more-projects">Ver mais no GitHub</a>
+                <a href="https://www.linkedin.com/in/cayque-cicarelli/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" data-translate="more-projects-linkedin">Ver no LinkedIn</a>
             </div>
         </div>
     </section>
@@ -250,8 +281,8 @@
                         </div>
                     </div>
                     <div class="social-icons">
-                        <a href="https://github.com/NeonBrasil" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/cayque-cicarelli/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/NeonBrasil" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/cayque-cicarelli/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
                     </div>
                 </div>
                 <div class="contact-form">
@@ -278,7 +309,7 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <p data-translate="footer-copyright">&copy; 2025 Meu Portfólio :) Todos os direitos reservados.</p>
+                <p data-translate="footer-copyright">&copy; 2026 Cayque Cicarelli. Todos os direitos reservados.</p>
                 <div class="footer-links">
                     <a href="#inicio" data-translate="nav-home">Início</a>
                     <a href="#sobre" data-translate="nav-about">Sobre</a>
