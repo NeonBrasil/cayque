@@ -12,16 +12,14 @@
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Space+Mono:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Elementos de fundo animados (estilo DIO.me) -->
-    <div class="animated-background">
-        <div class="particle-container">
-            <!-- Partículas serão geradas via JavaScript -->
-        </div>
-        <div class="gradient-overlay"></div>
-    </div>
+    <!-- Efeitos de fundo em camadas -->
+    <div class="fx-stars"></div>
+    <div class="fx-grain"></div>
+    <div class="fx-scanlines"></div>
+    <div class="fx-vignette"></div>
 
     <header>
         <div class="container">
@@ -155,7 +153,25 @@
                 <button class="filter-btn" data-filter="game" data-translate="filter-game">Jogos</button>
             </div>
             <div class="projects-grid">
-                <!-- 1. DM: Dungeon Music (mais recente) -->
+                <!-- 1. A Week to Remember (mais recente) -->
+                <div class="project-card" data-category="game">
+                    <div class="project-img">
+                        <img src="AWTR.png" alt="A Week to Remember">
+                    </div>
+                    <div class="project-info">
+                        <h3 data-translate="project-7-title">A Week to Remember</h3>
+                        <p data-translate="project-7-description">Jogo internacional onde sou o Lead Developer. Desenvolvido com a Letterflux Studios, disponível na itch.io.</p>
+                        <div class="project-tags">
+                            <span data-translate="tag-lead-dev">Lead Developer</span>
+                            <span data-translate="tag-game-dev">Game Developer</span>
+                            <span data-translate="tag-international">Internacional</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://letterfluxstudios.itch.io/a-week-to-remember" target="_blank" rel="noopener noreferrer" title="itch.io"><i class="fab fa-itch-io"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- 2. DM: Dungeon Music -->
                 <div class="project-card" data-category="game">
                     <div class="project-img"></div>
                     <div class="project-info">
@@ -172,9 +188,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- 2. The New Year's School -->
+                <!-- 3. The New Year's School -->
                 <div class="project-card" data-category="game">
-                    <div class="project-img"></div>
+                    <div class="project-img">
+                        <img src="The New Years School.jpg" alt="The New Year's School">
+                    </div>
                     <div class="project-info">
                         <h3 data-translate="project-5-title">The New Year's School</h3>
                         <p data-translate="project-5-description">Contribuí no desenvolvimento com Godot e implementei as medidas de segurança de networking deste jogo publicado na Steam.</p>
