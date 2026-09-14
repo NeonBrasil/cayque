@@ -84,6 +84,20 @@ document.addEventListener('DOMContentLoaded', function() {
         navLinks.classList.remove('active');
     });
 
+    // Janela de escolha do currículo
+    const cvButton = document.getElementById('download-cv');
+    const cvDialog = document.getElementById('cv-dialog');
+    if (cvButton && cvDialog) {
+        cvButton.addEventListener('click', () => cvDialog.showModal());
+
+        cvDialog.addEventListener('click', function(e) {
+            // Fechar ao clicar fora da caixa ou depois de escolher um currículo
+            if (e.target === cvDialog || e.target.closest('.cv-option')) {
+                cvDialog.close();
+            }
+        });
+    }
+
     // Filtro de projetos
     filterBtns.forEach(btn => {
         btn.addEventListener('click', function() {

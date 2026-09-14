@@ -23,6 +23,9 @@ const translations = {
         'skill-7': 'Segurança de Redes',
         'skill-more': 'E muito mais!',
         'download-cv': 'Baixar Currículo',
+        'cv-dialog-title': 'Qual currículo você quer baixar?',
+        'cv-option-security': 'Segurança da Informação',
+        'cv-option-gamedev': 'Game Developer',
         'projects-title': 'Meus Projetos',
         'filter-all': 'Todos',
         'filter-awareness': 'Awareness',
@@ -91,6 +94,9 @@ const translations = {
         'skill-7': 'Network Security',
         'skill-more': 'And much more!',
         'download-cv': 'Download CV',
+        'cv-dialog-title': 'Which résumé would you like?',
+        'cv-option-security': 'Information Security',
+        'cv-option-gamedev': 'Game Developer',
         'projects-title': 'My Projects',
         'filter-all': 'All',
         'filter-awareness': 'Awareness',
@@ -155,11 +161,11 @@ function switchLanguage(lang) {
         }
     });
 
-    // Atualizar link do currículo
-    const cvButton = document.getElementById('download-cv');
-    if (cvButton && translations[lang]['cv-file']) {
-        cvButton.setAttribute('href', translations[lang]['cv-file']);
-        cvButton.setAttribute('download', translations[lang]['cv-file']);
+    // Atualizar link do currículo de Segurança (muda conforme o idioma)
+    const cvSecurityLink = document.getElementById('cv-option-security');
+    if (cvSecurityLink && translations[lang]['cv-file']) {
+        cvSecurityLink.setAttribute('href', translations[lang]['cv-file']);
+        cvSecurityLink.setAttribute('download', translations[lang]['cv-file']);
     }
 
     // Atualizar title da página

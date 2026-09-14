@@ -132,9 +132,9 @@
                         <span data-translate="skill-more">E muito mais!</span>
                     </div>
                     
-                    <a href="#" id="download-cv" class="btn btn-download-cv" data-translate="download-cv">
+                    <button type="button" id="download-cv" class="btn btn-download-cv" data-translate="download-cv" aria-haspopup="dialog">
                         <i class="fas fa-download"></i> Download CV
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -348,6 +348,28 @@
             </div>
         </div>
     </footer>
+
+    <!-- Escolha de currículo (aberta pelo botão Baixar Currículo) -->
+    <dialog id="cv-dialog" class="cv-dialog" aria-labelledby="cv-dialog-title">
+        <div class="cv-dialog-content">
+            <form method="dialog">
+                <button type="submit" class="cv-dialog-close" aria-label="Fechar"><i class="fas fa-times"></i></button>
+            </form>
+            <h3 id="cv-dialog-title" data-translate="cv-dialog-title">Qual currículo você quer baixar?</h3>
+            <div class="cv-options">
+                <a id="cv-option-security" class="cv-option" href="curriculo_Cayque.pdf" download>
+                    <i class="fas fa-shield-alt"></i>
+                    <span data-translate="cv-option-security">Segurança da Informação</span>
+                    <i class="fas fa-download cv-option-download"></i>
+                </a>
+                <a class="cv-option" href="cvs/Cayque%20Cicarelli%20ren-py.pdf" download>
+                    <i class="fas fa-gamepad"></i>
+                    <span data-translate="cv-option-gamedev">Game Developer</span>
+                    <i class="fas fa-download cv-option-download"></i>
+                </a>
+            </div>
+        </div>
+    </dialog>
 
     <script src="translations.js"></script>
     <script src="script.js"></script>
