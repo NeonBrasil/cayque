@@ -1,393 +1,625 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR" data-theme="dark" data-route="all">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-translate="page-title">Cayque Cicarelli | Analista de Segurança</title>
-    <meta name="description" content="Portfólio de Cayque Cicarelli — Analista de Segurança da Informação e Game Developer especializado em DLP, SIEM, OSINT, Godot e Ren'Py. São Paulo, Brasil.">
-    <meta property="og:title" content="Cayque Cicarelli | Analista de Segurança & Game Developer">
-    <meta property="og:description" content="Especialista em DLP, OSINT, SIEM e Awareness em cibersegurança. Também desenvolvedor de jogos com Godot e Ren'Py.">
-    <meta property="og:image" content="cayque.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cayque Cicarelli — Game Developer & Segurança da Informação</title>
+    <meta name="description" content="Portfólio de Cayque Cicarelli, game developer (Ren'Py, Godot, Unity) e profissional de segurança da informação (DLP, Splunk, OSINT, GRC) em São Paulo.">
+    <meta name="author" content="Cayque Gastón Cicarelli">
+    <link rel="canonical" href="https://neonbrasil.github.io/cayque/">
+    <meta name="theme-color" content="#12100E">
+
+    <!-- Compartilhamento (LinkedIn, WhatsApp, Discord...) -->
     <meta property="og:type" content="website">
-    <link rel="icon" type="image/png" href="logo.png">
+    <meta property="og:site_name" content="Cayque Cicarelli">
+    <meta property="og:title" content="Cayque Cicarelli — Game Developer & Segurança da Informação">
+    <meta property="og:description" content="Dev líder de A Week to Remember (Steam) e quase dois anos de segurança da informação na Edenred Brasil: DLP, Splunk, OSINT e GRC.">
+    <meta property="og:url" content="https://neonbrasil.github.io/cayque/">
+    <meta property="og:image" content="https://neonbrasil.github.io/cayque/img/og-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Cayque Cicarelli — Game Dev × Segurança da Informação">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Space+Mono:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Aplica tema, rota e idioma antes da primeira pintura (evita "piscar") -->
+    <script>
+        (function () {
+            var d = document.documentElement, q = new URLSearchParams(location.search);
+            function get(k, legacy) {
+                try { return localStorage.getItem('cayque:' + k) || (legacy ? localStorage.getItem(legacy) : null); }
+                catch (e) { return null; }
+            }
+            d.classList.add('js');
+            d.setAttribute('data-theme', get('theme', 'theme') === 'light' ? 'light' : 'dark');
+            var r = (q.get('route') || q.get('rota') || get('route') || '').toLowerCase();
+            var routes = { game: 'game', games: 'game', jogos: 'game', sec: 'sec', seg: 'sec', security: 'sec', seguranca: 'sec' };
+            d.setAttribute('data-route', routes[r] || 'all');
+            var l = (q.get('lang') || get('lang', 'preferred-language') || 'pt').slice(0, 2).toLowerCase();
+            if (l === 'en') { d.lang = 'en'; d.classList.add('i18n-pending'); }
+        })();
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Cayque Gastón Cicarelli",
+        "alternateName": "Cayque Cicarelli",
+        "url": "https://neonbrasil.github.io/cayque/",
+        "image": "https://neonbrasil.github.io/cayque/img/cayque.png",
+        "email": "mailto:cayquecicarelli@gmail.com",
+        "jobTitle": ["Game Developer", "Information Security"],
+        "description": "Game developer (Ren'Py, Godot, Unity) e profissional de segurança da informação (DLP, Splunk, OSINT, GRC).",
+        "address": { "@type": "PostalAddress", "addressLocality": "São Paulo", "addressRegion": "SP", "addressCountry": "BR" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Centro Universitário FEI" },
+        "knowsLanguage": ["pt-BR", "en", "es"],
+        "knowsAbout": ["Game development", "Ren'Py", "Godot", "Unity", "Naninovel", "Python", "QA testing", "Information security", "Data Loss Prevention", "Splunk", "OSINT", "Incident response", "ISO 27001", "NIST 800-53", "LGPD"],
+        "sameAs": ["https://www.linkedin.com/in/cayque-cicarelli/", "https://github.com/NeonBrasil"]
+    }
+    </script>
+
+    <script src="translations.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <!-- Efeitos de fundo em camadas -->
-    <div class="fx-stars"></div>
-    <div class="fx-grain"></div>
-    <div class="fx-scanlines"></div>
-    <div class="fx-vignette"></div>
+    <svg xmlns="http://www.w3.org/2000/svg" class="sprite" aria-hidden="true" focusable="false">
+    <!-- Ícones: Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0) -->
+    <symbol id="i-github" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></symbol>
+    <symbol id="i-steam" viewBox="0 0 496 512"><path d="M496 256c0 137-111.2 248-248.4 248-113.8 0-209.6-76.3-239-180.4l95.2 39.3c6.4 32.1 34.9 56.4 68.9 56.4 39.2 0 71.9-32.4 70.2-73.5l84.5-60.2c52.1 1.3 95.8-40.9 95.8-93.5 0-51.6-42-93.5-93.7-93.5s-93.7 42-93.7 93.5v1.2L176.6 279c-15.5-.9-30.7 3.4-43.5 12.1L0 236.1C10.2 108.4 117.1 8 247.6 8 384.8 8 496 119 496 256zM155.7 384.3l-30.5-12.6a52.79 52.79 0 0 0 27.2 25.8c26.9 11.2 57.8-1.6 69-28.4 5.4-13 5.5-27.3.1-40.3-5.4-13-15.5-23.2-28.5-28.6-12.9-5.4-26.7-5.2-38.9-.6l31.5 13c19.8 8.2 29.2 30.9 20.9 50.7-8.3 19.9-31 29.2-50.8 21zm173.8-129.9c-34.4 0-62.4-28-62.4-62.3s28-62.3 62.4-62.3 62.4 28 62.4 62.3-27.9 62.3-62.4 62.3zm.1-15.6c25.9 0 46.9-21 46.9-46.8 0-25.9-21-46.8-46.9-46.8s-46.9 21-46.9 46.8c.1 25.8 21.1 46.8 46.9 46.8z"/></symbol>
+    <symbol id="i-itch-io" viewBox="0 0 512 512"><path d="M71.92 34.77C50.2 47.67 7.4 96.84 7 109.73v21.34c0 27.06 25.29 50.84 48.25 50.84 27.57 0 50.54-22.85 50.54-50 0 27.12 22.18 50 49.76 50s49-22.85 49-50c0 27.12 23.59 50 51.16 50h.5c27.57 0 51.16-22.85 51.16-50 0 27.12 21.47 50 49 50s49.76-22.85 49.76-50c0 27.12 23 50 50.54 50 23 0 48.25-23.78 48.25-50.84v-21.34c-.4-12.9-43.2-62.07-64.92-75C372.56 32.4 325.76 32 256 32S91.14 33.1 71.92 34.77zm132.32 134.39c-22 38.4-77.9 38.71-99.85.25-13.17 23.14-43.17 32.07-56 27.66-3.87 40.15-13.67 237.13 17.73 269.15 80 18.67 302.08 18.12 379.76 0 31.65-32.27 21.32-232 17.75-269.15-12.92 4.44-42.88-4.6-56-27.66-22 38.52-77.85 38.1-99.85-.24-7.1 12.49-23.05 28.94-51.76 28.94a57.54 57.54 0 0 1-51.75-28.94zm-41.58 53.77c16.47 0 31.09 0 49.22 19.78a436.91 436.91 0 0 1 88.18 0C318.22 223 332.85 223 349.31 223c52.33 0 65.22 77.53 83.87 144.45 17.26 62.15-5.52 63.67-33.95 63.73-42.15-1.57-65.49-32.18-65.49-62.79-39.25 6.43-101.93 8.79-155.55 0 0 30.61-23.34 61.22-65.49 62.79-28.42-.06-51.2-1.58-33.94-63.73 18.67-67 31.56-144.45 83.88-144.45zM256 270.79s-44.38 40.77-52.35 55.21l29-1.17v25.32c0 1.55 21.34.16 23.33.16 11.65.54 23.31 1 23.31-.16v-25.28l29 1.17c-8-14.48-52.35-55.24-52.35-55.24z"/></symbol>
+    <symbol id="i-download" viewBox="0 0 512 512"><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V274.7l-73.4-73.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l128 128c12.5 12.5 32.8 12.5 45.3 0l128-128c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L288 274.7V32zM64 352c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V416c0-35.3-28.7-64-64-64H346.5l-45.3 45.3c-25 25-65.5 25-90.5 0L165.5 352H64zm368 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48z"/></symbol>
+    <symbol id="i-arrow-up-right-from-square" viewBox="0 0 512 512"><path d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/></symbol>
+    <symbol id="i-arrow-down" viewBox="0 0 384 512"><path d="M169.4 470.6c12.5 12.5 32.8 12.5 45.3 0l160-160c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L224 370.8 224 64c0-17.7-14.3-32-32-32s-32 14.3-32 32l0 306.7L54.6 265.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l160 160z"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 512 512"><path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 384 512"><path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 448 512"><path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 448 512"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 576 512"><path d="M400 0H176c-26.5 0-48.1 21.8-47.1 48.2c.2 5.3 .4 10.6 .7 15.8H24C10.7 64 0 74.7 0 88c0 92.6 33.5 157 78.5 200.7c44.3 43.1 98.3 64.8 138.1 75.8c23.4 6.5 39.4 26 39.4 45.6c0 20.9-17 37.9-37.9 37.9H192c-17.7 0-32 14.3-32 32s14.3 32 32 32H384c17.7 0 32-14.3 32-32s-14.3-32-32-32H357.9C337 448 320 431 320 410.1c0-19.6 15.9-39.2 39.4-45.6c39.9-11 93.9-32.7 138.2-75.8C542.5 245 576 180.6 576 88c0-13.3-10.7-24-24-24H446.4c.3-5.2 .5-10.4 .7-15.8C448.1 21.8 426.5 0 400 0zM48.9 112h84.4c9.1 90.1 29.2 150.3 51.9 190.6c-24.9-11-50.8-26.5-73.2-48.3c-32-31.1-58-76-63-142.3zM464.1 254.3c-22.4 21.8-48.3 37.3-73.2 48.3c22.7-40.3 42.8-100.5 51.9-190.6h84.4c-5.1 66.3-31.1 111.2-63 142.3z"/></symbol>
+    <symbol id="i-dice-d20" viewBox="0 0 512 512"><path d="M48.7 125.8l53.2 31.9c7.8 4.7 17.8 2 22.2-5.9L201.6 12.1c3-5.4-.9-12.1-7.1-12.1c-1.6 0-3.2 .5-4.6 1.4L47.9 98.8c-9.6 6.6-9.2 20.9 .8 26.9zM16 171.7V295.3c0 8 10.4 11 14.7 4.4l60-92c5-7.6 2.6-17.8-5.2-22.5L40.2 158C29.6 151.6 16 159.3 16 171.7zM310.4 12.1l77.6 139.6c4.4 7.9 14.5 10.6 22.2 5.9l53.2-31.9c10-6 10.4-20.3 .8-26.9L322.1 1.4c-1.4-.9-3-1.4-4.6-1.4c-6.2 0-10.1 6.7-7.1 12.1zM496 171.7c0-12.4-13.6-20.1-24.2-13.7l-45.3 27.2c-7.8 4.7-10.1 14.9-5.2 22.5l60 92c4.3 6.7 14.7 3.6 14.7-4.4V171.7zm-49.3 246L286.1 436.6c-8.1 .9-14.1 7.8-14.1 15.9v52.8c0 3.7 3 6.8 6.8 6.8c.8 0 1.6-.1 2.4-.4l172.7-64c6.1-2.2 10.1-8 10.1-14.5c0-9.3-8.1-16.5-17.3-15.4zM233.2 512c3.7 0 6.8-3 6.8-6.8V452.6c0-8.1-6.1-14.9-14.1-15.9l-160.6-19c-9.2-1.1-17.3 6.1-17.3 15.4c0 6.5 4 12.3 10.1 14.5l172.7 64c.8 .3 1.6 .4 2.4 .4zM41.7 382.9l170.9 20.2c7.8 .9 13.4-7.5 9.5-14.3l-85.7-150c-5.9-10.4-20.7-10.8-27.3-.8L30.2 358.2c-6.5 9.9-.3 23.3 11.5 24.7zm439.6-24.8L402.9 238.1c-6.5-10-21.4-9.6-27.3 .8L290.2 388.5c-3.9 6.8 1.6 15.2 9.5 14.3l170.1-20c11.8-1.4 18-14.7 11.5-24.6zm-216.9 11l78.4-137.2c6.1-10.7-1.6-23.9-13.9-23.9H183.1c-12.3 0-20 13.3-13.9 23.9l78.4 137.2c3.7 6.4 13 6.4 16.7 0zM174.4 176H337.6c12.2 0 19.9-13.1 14-23.8l-80-144c-2.8-5.1-8.2-8.2-14-8.2h-3.2c-5.8 0-11.2 3.2-14 8.2l-80 144c-5.9 10.7 1.8 23.8 14 23.8z"/></symbol>
+    <symbol id="i-envelope" viewBox="0 0 512 512"><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48H48zM0 176V384c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V176L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"/></symbol>
+    <symbol id="i-location-dot" viewBox="0 0 384 512"><path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></symbol>
+    <symbol id="i-xmark" viewBox="0 0 384 512"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></symbol>
+    <symbol id="i-bars" viewBox="0 0 448 512"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></symbol>
+    <symbol id="i-shield-halved" viewBox="0 0 512 512"><path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c-.5 99.2-41.3 280.7-213.6 363.2c-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0zm0 66.8V444.8C394 378 431.1 230.1 432 141.4L256 66.8l0 0z"/></symbol>
+    <symbol id="i-gamepad" viewBox="0 0 640 512"><path d="M192 64C86 64 0 150 0 256S86 448 192 448H448c106 0 192-86 192-192s-86-192-192-192H192zM496 168a40 40 0 1 1 0 80 40 40 0 1 1 0-80zM392 304a40 40 0 1 1 80 0 40 40 0 1 1 -80 0zM168 200c0-13.3 10.7-24 24-24s24 10.7 24 24v32h32c13.3 0 24 10.7 24 24s-10.7 24-24 24H216v32c0 13.3-10.7 24-24 24s-24-10.7-24-24V280H136c-13.3 0-24-10.7-24-24s10.7-24 24-24h32V200z"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 448 512"><path d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z"/></symbol>
+    <symbol id="i-forward" viewBox="0 0 512 512"><path d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416V96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4L224 214.3V256v41.7L52.5 440.6zM256 352V256 128 96c0-12.4 7.2-23.7 18.4-29s24.5-3.6 34.1 4.4l192 160c7.3 6.1 11.5 15.1 11.5 24.6s-4.2 18.5-11.5 24.6l-192 160c-9.5 7.9-22.8 9.7-34.1 4.4s-18.4-16.6-18.4-29V352z"/></symbol>
+    <symbol id="i-clock-rotate-left" viewBox="0 0 512 512"><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></symbol>
+    <symbol id="i-play" viewBox="0 0 384 512"><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 320 512"><path d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48V400c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H240z"/></symbol>
+    <symbol id="i-magnifying-glass" viewBox="0 0 512 512"><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/></symbol>
+    <symbol id="i-code-branch" viewBox="0 0 448 512"><path d="M80 104a24 24 0 1 0 0-48 24 24 0 1 0 0 48zm80-24c0 32.8-19.7 61-48 73.3v87.8c18.8-10.9 40.7-17.1 64-17.1h96c35.3 0 64-28.7 64-64v-6.7C307.7 141 288 112.8 288 80c0-44.2 35.8-80 80-80s80 35.8 80 80c0 32.8-19.7 61-48 73.3V160c0 70.7-57.3 128-128 128H176c-35.3 0-64 28.7-64 64v6.7c28.3 12.3 48 40.5 48 73.3c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-32.8 19.7-61 48-73.3V352 153.3C19.7 141 0 112.8 0 80C0 35.8 35.8 0 80 0s80 35.8 80 80zm232 0a24 24 0 1 0 -48 0 24 24 0 1 0 48 0zM80 456a24 24 0 1 0 0-48 24 24 0 1 0 0 48z"/></symbol>
+    <symbol id="i-power-off" viewBox="0 0 512 512"><path d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V256c0 17.7 14.3 32 32 32s32-14.3 32-32V32zM143.5 120.6c13.6-11.3 15.4-31.5 4.1-45.1s-31.5-15.4-45.1-4.1C49.7 115.4 16 181.8 16 256c0 132.5 107.5 240 240 240s240-107.5 240-240c0-74.2-33.8-140.6-86.6-184.6c-13.6-11.3-33.8-9.4-45.1 4.1s-9.4 33.8 4.1 45.1c38.9 32.3 63.5 81 63.5 135.4c0 97.2-78.8 176-176 176s-176-78.8-176-176c0-54.4 24.7-103.1 63.5-135.4z"/></symbol>
+    <symbol id="i-file-arrow-down" viewBox="0 0 384 512"><path d="M64 0C28.7 0 0 28.7 0 64V448c0 35.3 28.7 64 64 64H320c35.3 0 64-28.7 64-64V160H256c-17.7 0-32-14.3-32-32V0H64zM256 0V128H384L256 0zM216 232V334.1l31-31c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-72 72c-9.4 9.4-24.6 9.4-33.9 0l-72-72c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l31 31V232c0-13.3 10.7-24 24-24s24 10.7 24 24z"/></symbol>
+    <symbol id="i-language" viewBox="0 0 640 512"><path d="M0 128C0 92.7 28.7 64 64 64H256h48 16H576c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H320 304 256 64c-35.3 0-64-28.7-64-64V128zm320 0V384H576V128H320zM178.3 175.9c-3.2-7.2-10.4-11.9-18.3-11.9s-15.1 4.7-18.3 11.9l-64 144c-4.5 10.1 .1 21.9 10.2 26.4s21.9-.1 26.4-10.2l8.9-20.1h73.6l8.9 20.1c4.5 10.1 16.3 14.6 26.4 10.2s14.6-16.3 10.2-26.4l-64-144zM160 233.2L179 276H141l19-42.8zM448 164c11 0 20 9 20 20v4h44 16c11 0 20 9 20 20s-9 20-20 20h-2l-1.6 4.5c-8.9 24.4-22.4 46.6-39.6 65.4c.9 .6 1.8 1.1 2.7 1.6l18.9 11.3c9.5 5.7 12.5 18 6.9 27.4s-18 12.5-27.4 6.9l-18.9-11.3c-4.5-2.7-8.8-5.5-13.1-8.5c-10.6 7.5-21.9 14-34 19.4l-3.6 1.6c-10.1 4.5-21.9-.1-26.4-10.2s.1-21.9 10.2-26.4l3.6-1.6c6.4-2.9 12.6-6.1 18.5-9.8l-12.2-12.2c-7.8-7.8-7.8-20.5 0-28.3s20.5-7.8 28.3 0l14.6 14.6 .5 .5c12.4-13.1 22.5-28.3 29.8-45H448 376c-11 0-20-9-20-20s9-20 20-20h52v-4c0-11 9-20 20-20z"/></symbol>
+    <symbol id="i-compass" viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm50.7-186.9L162.4 380.6c-19.4 7.5-38.5-11.6-31-31l55.5-144.3c3.3-8.5 9.9-15.1 18.4-18.4l144.3-55.5c19.4-7.5 38.5 11.6 31 31L325.1 306.7c-3.2 8.5-9.9 15.1-18.4 18.4zM288 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></symbol>
+    </svg>
+    <a class="skip-link" href="#conteudo" data-translate="skip">Pular para o conteúdo</a>
 
-    <header>
-        <div class="container">
-            <nav>
-                <div class="logo" data-translate="logo">Cayque Cicarelli</div>
-                <ul class="nav-links">
-                    <li><a href="#inicio" data-translate="nav-home">Início</a></li>
-                    <li><a href="#sobre" data-translate="nav-about">Sobre Mim</a></li>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="#inicio" aria-label="Cayque Cicarelli — início" data-translate-attr="aria-label:brand-label">
+                <svg class="brand-mark" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+                    <path class="bm-letters" d="M3 3h4v1H3zM2 4h5v1H2zM2 5h2v4H2zM2 9h5v1H2zM3 10h4v1H3zM10 3h4v1h-4zM9 4h5v1H9zM9 5h2v4H9zM9 9h5v1H9zM10 10h4v1h-4z"/>
+                    <path class="bm-game" d="M2 12h6v1H2z"/>
+                    <path class="bm-sec" d="M8 12h6v1H8z"/>
+                </svg>
+                <span class="brand-name">Cayque Cicarelli</span>
+            </a>
+
+            <nav class="site-nav" id="site-nav" aria-label="Principal" data-translate-attr="aria-label:nav-label">
+                <ul>
                     <li><a href="#projetos" data-translate="nav-projects">Projetos</a></li>
+                    <li><a href="#experiencia" data-translate="nav-experience">Experiência</a></li>
+                    <li><a href="#sobre" data-translate="nav-about">Sobre</a></li>
                     <li><a href="#contato" data-translate="nav-contact">Contato</a></li>
                 </ul>
-                <div class="language-selector">
-                    <select id="languageSelect">
-                        <option value="pt" selected>🇧🇷 PT</option>
-                        <option value="en">🇺🇸 EN</option>
-                    </select>
-                </div>
-                <div class="theme-toggle">
-                    <i class="fas fa-moon"></i>
-                </div>
-                <div class="menu-btn">
-                    <div class="menu-btn__burger"></div>
-                </div>
             </nav>
+
+            <div class="header-tools">
+                <div class="lang-switch" role="group" aria-label="Idioma" data-translate-attr="aria-label:lang-label">
+                    <button type="button" data-lang="pt" aria-pressed="true">PT</button>
+                    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+                </div>
+                <button type="button" class="icon-btn theme-toggle" aria-label="Alternar tema claro/escuro" data-translate-attr="aria-label:theme-label">
+                    <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+                    <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+                </button>
+                <button type="button" class="btn btn-ghost btn-small header-cv js-open-cv">
+                    <svg class="icon" aria-hidden="true"><use href="#i-file-arrow-down"/></svg>
+                    <span data-translate="cv-button">Currículo</span>
+                </button>
+                <button type="button" class="icon-btn menu-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menu" data-translate-attr="aria-label:menu-label">
+                    <svg class="icon icon-bars" aria-hidden="true"><use href="#i-bars"/></svg>
+                    <svg class="icon icon-close" aria-hidden="true"><use href="#i-xmark"/></svg>
+                </button>
+            </div>
         </div>
     </header>
 
-    <section id="inicio" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1><span data-translate="hero-greeting">Olá, eu sou o</span> <span class="highlight">Cayque Cicarelli</span></h1>
-                <h2 data-translate="hero-title">Segurança da Informação | Prevenção Digital | Awareness & OSINT | DLP & Gestão de Riscos | Comunicador & Escritor</h2>
-                <p data-translate="hero-subtitle">Transformando dados em segurança</p>
-                <div class="hero-btns">
-                    <a href="#projetos" class="btn btn-primary" data-translate="hero-btn-projects">Ver Projetos</a>
-                    <a href="#contato" class="btn btn-secondary" data-translate="nav-contact">Contato</a>
-                </div>
-                <div class="social-icons">
-                    <a href="https://github.com/NeonBrasil" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/cayque-cicarelli/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="hero-shapes">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-            <div class="shape shape-4"></div>
-        </div>
-    </section>
+    <main id="conteudo">
+        <!-- ========== HERO ========== -->
+        <section class="hero" id="inicio" aria-labelledby="hero-title">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <p class="eyebrow hero-eyebrow">
+                        <span class="c-game" data-translate="hero-eyebrow-game">Game Dev</span>
+                        <span class="x" aria-hidden="true">×</span>
+                        <span class="c-sec" data-translate="hero-eyebrow-sec">Segurança da Informação</span>
+                    </p>
+                    <h1 class="hero-title" id="hero-title">Cayque <span>Cicarelli</span></h1>
 
-    <section id="sobre" class="about">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-translate="about-title">Sobre Mim</h2>
-                <div class="underline"></div>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="cayque.png" alt="Cayque Cicarelli">
-                </div>
-                <div class="about-text">
-                    <h3 data-translate="about-who-am-i">Quem sou eu?</h3>
-                    <p data-translate="about-description">Sou Analista de Segurança da Informação com experiência em DLP, SIEM (Splunk), OSINT e projetos de conscientização. Atuo na prevenção de vazamentos, análise de riscos e comunicação estratégica em cibersegurança. Bacharel em Ciência da Computação pela FEI, tenho certificações por Google, Cisco, Microsoft e FGV. Apaixonado por tecnologia, ensino e escrita, busco unir conhecimento técnico e criatividade para fortalecer a segurança digital nas empresas.</p>
-                    
-                    <h3 data-translate="about-skills-title">Minhas Habilidades</h3>
-                    <div class="skills">
-                        <div class="skill">
-                            <span data-translate="skill-1">Investigação e Prevenção de Vazamentos</span>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div class="skill">
-                            <span data-translate="skill-2">Comunicação Técnica e Awareness</span>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill">
-                            <span data-translate="skill-3">Inteligência de Ameaças (OSINT)</span>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 87%"></div>
-                            </div>
-                        </div>
-                        <div class="skill">
-                            <span data-translate="skill-4">Documentação e Processos</span>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <div class="skill">
-                            <span data-translate="skill-5">Splunk e SPL</span>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 76%"></div>
-                            </div>
-                        </div>
-                        <div class="skill">
-                            <span data-translate="skill-6">Desenvolvimento de Jogos (Godot / Ren'Py)</span>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 70%"></div>
-                            </div>
-                        </div>
-                        <div class="skill">
-                            <span data-translate="skill-7">Segurança de Redes</span>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 80%"></div>
-                            </div>
-                        </div>
-                        <span data-translate="skill-more">E muito mais!</span>
-                    </div>
-                    
-                    <button type="button" id="download-cv" class="btn btn-download-cv" data-translate="download-cv" aria-haspopup="dialog">
-                        <i class="fas fa-download"></i> Download CV
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
+                    <p class="hero-lead only-all" data-translate-html="hero-lead-all">Desenvolvedor de jogos e profissional de segurança da informação. Hoje sou o dev líder de <em>A Week to Remember</em> para a Letterflux Studios (EUA); antes, passei quase dois anos na segurança da Edenred Brasil cuidando de DLP, Splunk e resposta a incidentes.</p>
+                    <p class="hero-lead only-game" data-translate-html="hero-lead-game">Desenvolvedor de jogos: único dev de <em>A Week to Remember</em>, visual novel comercial da Letterflux Studios (EUA). Trabalho com Ren'Py, Godot e Unity e trago da segurança o olhar de QA: testar, reproduzir e documentar cada bug.</p>
+                    <p class="hero-lead only-sec" data-translate-html="hero-lead-sec">Segurança da informação: quase dois anos na Edenred Brasil com DLP (Proofpoint), Splunk, OSINT e GRC — ISO 27001, NIST 800-53 e LGPD. Bacharel em Ciência da Computação pela FEI.</p>
 
-    <section id="projetos" class="projects">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-translate="projects-title">Meus Projetos</h2>
-                <div class="underline"></div>
-            </div>
-            <div class="project-filters">
-                <button class="filter-btn active" data-filter="all" data-translate="filter-all">Todos</button>
-                <button class="filter-btn" data-filter="web" data-translate="filter-awareness">Awareness</button>
-                <button class="filter-btn" data-filter="app" data-translate="filter-writing">Escrita</button>
-                <button class="filter-btn" data-filter="game" data-translate="filter-game">Jogos</button>
-            </div>
-            <div class="projects-grid">
-                <!-- 1. SPECTOR — Spooktober Visual Novel Jam 2026 (mais recente) -->
-                <div class="project-card" data-category="game">
-                    <div class="project-img">
-                        <img src="spector.jpg" alt="SPECTOR">
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="#projetos">
+                            <span data-translate="hero-cta-projects">Ver projetos</span>
+                            <svg class="icon" aria-hidden="true"><use href="#i-arrow-down"/></svg>
+                        </a>
+                        <button type="button" class="btn btn-ghost js-open-cv">
+                            <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+                            <span data-translate="hero-cta-cv">Baixar currículo</span>
+                        </button>
                     </div>
-                    <div class="project-info">
-                        <h3 data-translate="project-8-title">SPECTOR</h3>
-                        <p data-translate="project-8-description">Jogo de terror no estilo chat-sim criado na game jam Spooktober Visual Novel Jam 2026, onde fui o Lead Programmer. Desenvolvido em Unity com Naninovel junto a uma equipe internacional da Letterflux Studios.</p>
-                        <div class="project-tags">
-                            <span>Game Jam</span>
-                            <span data-translate="tag-lead-programmer">Lead Programmer</span>
-                            <span>Unity</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://letterfluxstudios.itch.io/spector" target="_blank" rel="noopener noreferrer" title="itch.io"><i class="fab fa-itch-io"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!-- 2. A Week to Remember -->
-                <div class="project-card" data-category="game">
-                    <div class="project-img">
-                        <img src="AWTR.png" alt="A Week to Remember">
-                    </div>
-                    <div class="project-info">
-                        <h3 data-translate="project-7-title">A Week to Remember</h3>
-                        <p data-translate="project-7-description">Jogo internacional onde sou o Lead Developer. Desenvolvido com a Letterflux Studios, disponível na itch.io e na Steam.</p>
-                        <div class="project-tags">
-                            <span data-translate="tag-lead-dev">Lead Developer</span>
-                            <span data-translate="tag-game-dev">Game Developer</span>
-                            <span data-translate="tag-international">Internacional</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://letterfluxstudios.itch.io/a-week-to-remember" target="_blank" rel="noopener noreferrer" title="itch.io"><i class="fab fa-itch-io"></i></a>
-                            <a href="https://store.steampowered.com/app/5056570/A_Week_to_Remember/" target="_blank" rel="noopener noreferrer" title="Steam"><i class="fab fa-steam"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!-- 3. DM: Dungeon Music -->
-                <div class="project-card" data-category="game">
-                    <div class="project-img"></div>
-                    <div class="project-info">
-                        <h3 data-translate="project-6-title">DM: Dungeon Music</h3>
-                        <p data-translate="project-6-description">Ferramenta open source para Mestres de RPG (Dungeon Masters), desenvolvida em Python. Gerencie músicas, efeitos sonoros, imagens e apresentações — tudo em um só lugar. Atualizado com frequência.</p>
-                        <div class="project-tags">
-                            <span>Python</span>
-                            <span data-translate="tag-rpg">RPG</span>
-                            <span data-translate="tag-open-source">Open Source</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/NeonBrasil/DM-Dungeon-Music" target="_blank" rel="noopener noreferrer" title="Repositório GitHub"><i class="fab fa-github"></i></a>
-                            <a href="https://github.com/NeonBrasil/DM-Dungeon-Music/releases" target="_blank" rel="noopener noreferrer" title="Download (.exe)"><i class="fas fa-download"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!-- 4. The New Year's School -->
-                <div class="project-card" data-category="game">
-                    <div class="project-img">
-                        <img src="The New Years School.jpg" alt="The New Year's School">
-                    </div>
-                    <div class="project-info">
-                        <h3 data-translate="project-5-title">The New Year's School</h3>
-                        <p data-translate="project-5-description">Contribuí no desenvolvimento com Godot e implementei as medidas de segurança de networking deste jogo publicado na Steam.</p>
-                        <div class="project-tags">
-                            <span>Godot</span>
-                            <span data-translate="tag-game-dev">Game Developer</span>
-                            <span data-translate="tag-network-security">Segurança de Redes</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://store.steampowered.com/app/4134940/The_New_Years_School/?curator_clanid=45830552" target="_blank" rel="noopener noreferrer"><i class="fab fa-steam"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!-- 5. SIA: Security & Information Academy -->
-                <div class="project-card" data-category="web">
-                    <div class="project-img">
-                        <img src="SIA.png" alt="SIA: Security & Information Academy">
-                    </div>
-                    <div class="project-info">
-                        <h3 data-translate="project-1-title">SIA: Security & Information Academy</h3>
-                        <p data-translate="project-1-description">Projeto para ensino de segurança da informação gratuito desde o básico até o avançado.</p>
-                        <div class="project-tags">
-                            <span data-translate="filter-awareness">Awareness</span>
-                            <span>Firebase</span>
-                            <span data-translate="tag-documentation">Documentação</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://cyberguard-pro-27c29.web.app" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!-- 6. Awareness & Tech News -->
-                <div class="project-card" data-category="web">
-                    <div class="project-img">
-                        <img src="technews.png" alt="Awareness & Tech News">
-                    </div>
-                    <div class="project-info">
-                        <h3 data-translate="project-2-title">Awareness & Tech News</h3>
-                        <p data-translate="project-2-description">Publicações semanais sobre segurança da informação e tecnologia na Edenred Brasil, com foco em conscientização de colaboradores.</p>
-                        <div class="project-tags">
-                            <span data-translate="filter-awareness">Awareness</span>
-                            <span data-translate="tag-communication">Comunicação</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://www.linkedin.com/posts/cayque-cicarelli_tenho-o-prazer-de-compartilhar-o-projeto-activity-7296226089197092865-TmTR?utm_source=share&utm_medium=member_desktop&rcm=ACoAADTfqmcBmxNanmjQ6qCelFFVm_G6ZXhNFYc" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!-- 7. Palestrante Especialista em Tecnologia -->
-                <div class="project-card" data-category="web">
-                    <div class="project-img">
-                        <img src="Palestrante Especialista em Tecnologia.png" alt="Palestrante Especialista em Tecnologia">
-                    </div>
-                    <div class="project-info">
-                        <h3 data-translate="project-3-title">Palestrante Especialista em Tecnologia</h3>
-                        <p data-translate="project-3-description">Palestras sobre tecnologia para público de todas as idades. Uma das minhas palestras foi na parôquia São João Batista, onde mostrei como a tecnologia pode ser usada para melhorar a vida das pessoas.</p>
-                        <div class="project-tags">
-                            <span data-translate="tag-lecture">Palestra</span>
-                            <span data-translate="tag-communication">Comunicação</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://www.linkedin.com/posts/cayque-cicarelli_finalmente-depois-de-muita-espera-consegui-activity-6987832625465831426-sILv?utm_source=share&utm_medium=member_desktop&rcm=ACoAADTfqmcBmxNanmjQ6qCelFFVm_G6ZXhNFYc" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <!-- 8. O Castelo da Imaginação (2019, mais antigo) -->
-                <div class="project-card" data-category="app">
-                    <div class="project-img">
-                        <img src="castelodaimaginação.png" alt="O Castelo da Imaginação">
-                    </div>
-                    <div class="project-info">
-                        <h3 data-translate="project-4-title">O Castelo da Imaginação</h3>
-                        <p data-translate="project-4-description">Livro infanto-juvenil que escrevi em 2019. "Em 1472 no Multiverso Aquar, um pequeno grupo de aventureiros estão à procura do tesouro de Estor Murc. Durante essa jornada eles descobrem coisas incríveis, como o livro de todas as magias e o castelo da imaginação. O Castelo é um local extremamente mágico. Utilizando os poderes do castelo, o individuo poderá criar basicamente tudo apenas usando o poder da imaginação."</p>
-                        <div class="project-tags">
-                            <span data-translate="filter-writing">Escrita</span>
-                            <span data-translate="tag-creativity">Criatividade</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://www.linkedin.com/posts/cayque-cicarelli_udemy-clubedeautores-livro-activity-6988218512708112385-tDeJ?utm_source=share&utm_medium=member_desktop&rcm=ACoAADTfqmcBmxNanmjQ6qCelFFVm_G6ZXhNFYc" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i></a>
-                            <a href="https://www.amazon.com.br/Castelo-Imagina%C3%A7%C3%A3o-Cayque-Gast%C3%B3n-Cicarelli/dp/6590152802" target="_blank" rel="noopener noreferrer"><i class="fab fa-amazon"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="projects-btn">
-                <a href="https://github.com/NeonBrasil" target="_blank" rel="noopener noreferrer" class="btn btn-primary" data-translate="more-projects">Ver mais no GitHub</a>
-                <a href="https://www.linkedin.com/in/cayque-cicarelli/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" data-translate="more-projects-linkedin">Ver no LinkedIn</a>
-            </div>
-        </div>
-    </section>
 
-    <section id="contato" class="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 data-translate="contact-title">Entre em Contato</h2>
-                <div class="underline"></div>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h3 data-translate="contact-email">Email</h3>
-                            <p>cayquecicarelli@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <h3 data-translate="contact-location">Localização</h3>
-                            <p data-translate="contact-location-text">São Paulo, Brasil</p>
-                        </div>
-                    </div>
-                    <div class="social-icons">
-                        <a href="https://github.com/NeonBrasil" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/cayque-cicarelli/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-                    </div>
+                    <ul class="hero-meta">
+                        <li><svg class="icon" aria-hidden="true"><use href="#i-location-dot"/></svg><span data-translate="hero-meta-location">São Paulo, Brasil · remoto</span></li>
+                        <li><svg class="icon" aria-hidden="true"><use href="#i-language"/></svg><span>PT · EN · ES</span></li>
+                        <li class="hero-social">
+                            <a href="https://github.com/NeonBrasil" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg></a>
+                            <a href="https://www.linkedin.com/in/cayque-cicarelli/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg></a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" data-translate-placeholder="form-name" placeholder="Seu Nome" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" data-translate-placeholder="form-email" placeholder="Seu Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="subject" name="subject" data-translate-placeholder="form-subject" placeholder="Assunto" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" data-translate-placeholder="form-message" placeholder="Sua Mensagem" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" data-translate="form-submit">Enviar Mensagem</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <p data-translate="footer-copyright">&copy; 2026 Cayque Cicarelli. Todos os direitos reservados.</p>
-                <div class="footer-links">
-                    <a href="#inicio" data-translate="nav-home">Início</a>
-                    <a href="#sobre" data-translate="nav-about">Sobre</a>
-                    <a href="#projetos" data-translate="nav-projects">Projetos</a>
-                    <a href="#contato" data-translate="nav-contact">Contato</a>
+                <!-- Cena de visual novel: a escolha de rota adapta o site -->
+                <div class="vn" id="vn" data-state="talk" role="region" aria-label="Apresentação em estilo visual novel" data-translate-attr="aria-label:vn-label">
+                    <div class="vn-stage" aria-hidden="true">
+                        <img class="vn-sprite" src="img/cayque.webp" width="440" height="936" alt="" fetchpriority="high">
+                    </div>
+
+                    <p class="vn-location" aria-hidden="true">
+                        <svg class="icon"><use href="#i-location-dot"/></svg>
+                        <span data-translate="vn-location">São Paulo</span> · <time class="vn-clock">--:--</time>
+                    </p>
+
+                    <div class="vn-choices" role="group" aria-label="Escolha uma rota" data-translate-attr="aria-label:vn-choices-label" hidden>
+                        <button type="button" class="vn-choice" data-choice="game"><span data-translate="vn-choice-game">Rota Game Dev</span><span class="dot dot-game" aria-hidden="true"></span></button>
+                        <button type="button" class="vn-choice" data-choice="sec"><span data-translate="vn-choice-sec">Rota Segurança</span><span class="dot dot-sec" aria-hidden="true"></span></button>
+                        <button type="button" class="vn-choice" data-choice="all"><span data-translate="vn-choice-all">Quero ver tudo</span><span class="dot dot-all" aria-hidden="true"></span></button>
+                    </div>
+
+                    <div class="vn-box">
+                        <span class="vn-name">Cayque</span>
+                        <p class="vn-text">Oi, eu sou o Cayque. Que bom que você passou por aqui.</p>
+                        <div class="vn-after" hidden>
+                            <a href="#projetos"><span data-translate="vn-see-projects">Ver projetos</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-down"/></svg></a>
+                            <button type="button" class="js-vn-reroute"><svg class="icon" aria-hidden="true"><use href="#i-code-branch"/></svg><span data-translate="vn-change-route">Trocar rota</span></button>
+                        </div>
+                        <div class="vn-quick" role="group" aria-label="Menu rápido" data-translate-attr="aria-label:vn-quick-label">
+                            <button type="button" class="vn-q" data-vn="history"><svg class="icon" aria-hidden="true"><use href="#i-clock-rotate-left"/></svg><span data-translate="vn-history">Histórico</span></button>
+                            <button type="button" class="vn-q" data-vn="skip"><svg class="icon" aria-hidden="true"><use href="#i-forward"/></svg><span data-translate="vn-skip">Pular</span></button>
+                            <button type="button" class="vn-q" data-vn="auto" aria-pressed="false"><svg class="icon icon-play" aria-hidden="true"><use href="#i-play"/></svg><svg class="icon icon-pause" aria-hidden="true"><use href="#i-pause"/></svg><span data-translate="vn-auto">Auto</span></button>
+                        </div>
+                        <button type="button" class="vn-next" aria-label="Próxima fala" data-translate-attr="aria-label:vn-next"><span class="vn-caret" aria-hidden="true">▼</span></button>
+                    </div>
+
+                    <div class="vn-log" hidden>
+                        <div class="vn-log-head">
+                            <h2 class="vn-log-title" data-translate="vn-history">Histórico</h2>
+                            <button type="button" class="icon-btn js-vn-log-close" aria-label="Fechar histórico" data-translate-attr="aria-label:vn-close"><svg class="icon" aria-hidden="true"><use href="#i-xmark"/></svg></button>
+                        </div>
+                        <ol class="vn-log-list"></ol>
+                    </div>
+
+                    <p class="sr-only vn-live" aria-live="polite"></p>
                 </div>
+            </div>
+        </section>
+
+        <!-- ========== 01 PROJETOS ========== -->
+        <section class="section" id="projetos" aria-labelledby="projetos-title">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <p class="eyebrow"><span class="eyebrow-num">01</span><span data-translate="projects-eyebrow">Biblioteca</span></p>
+                        <h2 id="projetos-title" data-translate="projects-title">Projetos</h2>
+                    </div>
+                    <div class="route-switch" role="group" aria-label="Filtrar por área" data-translate-attr="aria-label:route-switch-label">
+                        <button type="button" data-route-set="all" aria-pressed="true"><span data-translate="route-all">Tudo</span></button>
+                        <button type="button" data-route-set="game" aria-pressed="false"><span class="dot dot-game" aria-hidden="true"></span><span data-translate="route-game">Jogos</span></button>
+                        <button type="button" data-route-set="sec" aria-pressed="false"><span class="dot dot-sec" aria-hidden="true"></span><span data-translate="route-sec">Segurança</span></button>
+                    </div>
+                </div>
+
+                <div class="featured">
+                    <!-- Destaque de jogos -->
+                    <article class="feature feature-game reveal" data-domain="game">
+                        <div class="feature-media">
+                            <img src="img/awtr.webp" width="616" height="353" alt="Arte de capa de A Week to Remember" data-translate-attr="alt:awtr-img-alt" loading="lazy" decoding="async">
+                            <figure class="feature-shot">
+                                <img src="img/awtr-shot.webp" width="960" height="540" alt="Cena de exploração point-and-click de A Week to Remember" data-translate-attr="alt:awtr-shot-alt" loading="lazy" decoding="async">
+                                <figcaption data-translate="awtr-shot-caption">point-and-click, in-game</figcaption>
+                            </figure>
+                        </div>
+                        <div class="feature-body">
+                            <p class="meta"><span class="tag tag-game" data-translate="awtr-tag">Jogo comercial</span><span data-translate="awtr-meta">Letterflux Studios (EUA) · 2026 — atual</span></p>
+                            <h3>A Week to Remember</h3>
+                            <p data-translate="awtr-desc">Visual novel comercial em Ren'Py/Python, com lançamento completo previsto para 2027. Sou o único desenvolvedor de um time de 10 pessoas.</p>
+                            <ul class="facts">
+                                <li data-translate="awtr-fact-1">Sistema de escolhas e ramificações: 5 finais até agora, estruturado para mais de 20.</li>
+                                <li data-translate="awtr-fact-2">Mecânicas de criação de feitiços, exploração point-and-click e um celular funcional.</li>
+                                <li data-translate="awtr-fact-3">GUI acessível: texto alternativo, legendas, suporte a controle e alto contraste.</li>
+                                <li data-translate="awtr-fact-4">Playtests fechados no itch.io com mais de 150 downloads e quase 500 wishlists na Steam.</li>
+                            </ul>
+                            <p class="stack">Ren'Py · Python · Git · Scrum</p>
+                            <div class="links">
+                                <a class="link" href="https://store.steampowered.com/app/5056570/A_Week_to_Remember/" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-steam"/></svg>Steam<svg class="icon icon-ext" aria-hidden="true"><use href="#i-arrow-up-right-from-square"/></svg></a>
+                                <a class="link" href="https://letterfluxstudios.itch.io/a-week-to-remember" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-itch-io"/></svg>itch.io<svg class="icon icon-ext" aria-hidden="true"><use href="#i-arrow-up-right-from-square"/></svg></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Destaque de segurança: painel no estilo Splunk -->
+                    <article class="feature feature-sec reveal" data-domain="sec">
+                        <div class="feature-media spl">
+                            <div class="spl-search" aria-hidden="true">
+                                <div class="spl-bar">
+                                    <svg class="icon"><use href="#i-magnifying-glass"/></svg>
+                                    <code data-translate-html="spl-query">index=carreira org="Edenred Brasil" <b>| table</b> resultado, valor</code>
+                                </div>
+                                <span class="spl-time">03/2024 → 12/2025</span>
+                            </div>
+                            <p class="spl-status" aria-hidden="true">
+                                <svg class="icon"><use href="#i-check"/></svg>
+                                <span class="only-all" data-translate="spl-status-4">4 resultados</span>
+                                <span class="only-sec" data-translate="spl-status-6">6 resultados</span>
+                            </p>
+                            <p class="spl-tabs" aria-hidden="true">
+                                <span data-translate="spl-tab-events">Eventos</span>
+                                <span class="is-active" data-translate="spl-tab-stats">Estatísticas</span>
+                                <span data-translate="spl-tab-viz">Visualização</span>
+                            </p>
+                            <table class="spl-table">
+                                <caption class="sr-only" data-translate="spl-caption">Resultados do estágio na Edenred Brasil</caption>
+                                <thead><tr><th scope="col" data-translate="spl-col-1">resultado</th><th scope="col" data-translate="spl-col-2">valor</th></tr></thead>
+                                <tbody>
+                                    <tr><td data-translate="spl-row-1">incidentes de DLP tratados</td><td>100+</td></tr>
+                                    <tr><td data-translate="spl-row-2">análises de DLP feitas por mim</td><td>~90%</td></tr>
+                                    <tr><td data-translate="spl-row-3">probabilidade de exfiltração</td><td>−70%</td></tr>
+                                    <tr><td data-translate="spl-row-4">incidentes ligados a awareness</td><td>−30%</td></tr>
+                                    <tr class="only-sec"><td data-translate="spl-row-5">políticas de SI atualizadas</td><td>5+</td></tr>
+                                    <tr class="only-sec"><td data-translate="spl-row-6">vazamento crítico achado via SPL</td><td>1</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="feature-body">
+                            <p class="meta"><span class="tag tag-sec" data-translate="ed-tag">Segurança</span><span data-translate="ed-meta">Edenred Brasil · 2024 — 2025</span></p>
+                            <h3 data-translate="ed-title">Proteção de dados na Edenred Brasil</h3>
+                            <p data-translate="ed-desc">Estágio de quase dois anos no time de segurança da informação de uma empresa de meios de pagamento, com DLP, SIEM, OSINT e GRC no dia a dia.</p>
+                            <ul class="facts">
+                                <li data-translate="ed-fact-1">Administrei o DLP Proofpoint e fiz cerca de 90% das análises da empresa na ferramenta.</li>
+                                <li data-translate="ed-fact-2">No Splunk, achei um vazamento crítico a partir de padrões em logs de transferência.</li>
+                                <li data-translate="ed-fact-3">Criei o Awareness & Tech News, série semanal que reduziu em mais de 30% os incidentes relacionados.</li>
+                            </ul>
+                            <p class="stack">Proofpoint DLP · Splunk (SPL) · Axur · ISO 27001 · NIST 800-53 · LGPD</p>
+                            <div class="links">
+                                <a class="link" href="#experiencia"><span data-translate="ed-link-exp">Ver na experiência</span><svg class="icon icon-ext" aria-hidden="true"><use href="#i-arrow-down"/></svg></a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="cards">
+                    <article class="card reveal" data-domain="game" style="--o-game: 1">
+                        <div class="card-media"><img src="img/spector.webp" width="630" height="500" alt="Tela de título de SPECTOR" data-translate-attr="alt:spector-alt" loading="lazy" decoding="async"></div>
+                        <div class="card-body">
+                            <p class="meta"><span class="tag tag-game" data-translate="spector-tag">Game jam</span><span>2026 · Unity · Naninovel</span></p>
+                            <h3>SPECTOR</h3>
+                            <p data-translate="spector-desc">Terror no estilo chat-sim feito para a Spooktober Visual Novel Jam 2026 com um time internacional. Como programador líder, construí o jogo inteiro: lógica, câmeras e luz, easter eggs e alguns textos.</p>
+                            <div class="links">
+                                <a class="link" href="https://letterfluxstudios.itch.io/spector" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-itch-io"/></svg>itch.io<svg class="icon icon-ext" aria-hidden="true"><use href="#i-arrow-up-right-from-square"/></svg></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card card--last-sec reveal" data-domain="game sec" style="--o-game: 2; --o-sec: 3">
+                        <div class="card-media"><img src="img/nys.webp" width="616" height="353" alt="Arte de capa de The New Year's School" data-translate-attr="alt:nys-alt" loading="lazy" decoding="async"></div>
+                        <div class="card-body">
+                            <p class="meta"><span class="tag tag-cross">Crossover</span><span>Steam · Godot</span></p>
+                            <h3>The New Year's School</h3>
+                            <p data-translate="nys-desc">Jogo cooperativo multiplayer publicado na Steam. Trabalhei em gameplay e em testes de UI e de rede — inclusive tentando hackear o jogo para pegar as respostas ou atacar outros jogadores.</p>
+                            <div class="links">
+                                <a class="link" href="https://store.steampowered.com/app/4134940/The_New_Years_School/" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-steam"/></svg>Steam<svg class="icon icon-ext" aria-hidden="true"><use href="#i-arrow-up-right-from-square"/></svg></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card reveal" data-domain="game sec" style="--o-game: 4; --o-sec: 1">
+                        <div class="card-media card-media--contain"><img src="img/sia.webp" width="1290" height="520" alt="Tela inicial da SIA: Security & Information Academy" data-translate-attr="alt:sia-alt" loading="lazy" decoding="async"></div>
+                        <div class="card-body">
+                            <p class="meta"><span class="tag tag-cross">Crossover</span><span data-translate="sia-meta">Web · Firebase · em desenvolvimento</span></p>
+                            <h3>SIA: Security &amp; Information Academy</h3>
+                            <p data-translate="sia-desc">Plataforma gratuita para aprender segurança da informação do básico ao avançado, com quiz e ranking para transformar o estudo em jogo.</p>
+                            <div class="links">
+                                <a class="link" href="https://cyberguard-pro-27c29.web.app" target="_blank" rel="noopener noreferrer"><span data-translate="sia-link">Abrir a plataforma</span><svg class="icon icon-ext" aria-hidden="true"><use href="#i-arrow-up-right-from-square"/></svg></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card card--wide-all reveal" data-domain="sec" style="--o-sec: 2">
+                        <div class="card-media card-media--left"><img src="img/technews.webp" width="800" height="372" alt="Episódios publicados do Awareness & Tech News" data-translate-attr="alt:news-alt" loading="lazy" decoding="async"></div>
+                        <div class="card-body">
+                            <p class="meta"><span class="tag tag-sec">Awareness</span><span data-translate="news-meta">Edenred Brasil · rede interna</span></p>
+                            <h3>Awareness &amp; Tech News</h3>
+                            <p data-translate="news-desc">Série semanal de notícias de segurança e tecnologia para os colaboradores, com apoio de gerentes e diretores. Reduziu em mais de 30% os incidentes relacionados.</p>
+                            <div class="links">
+                                <a class="link" href="https://www.linkedin.com/posts/cayque-cicarelli_tenho-o-prazer-de-compartilhar-o-projeto-activity-7296226089197092865-TmTR" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg><span data-translate="news-link">Post no LinkedIn</span><svg class="icon icon-ext" aria-hidden="true"><use href="#i-arrow-up-right-from-square"/></svg></a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="card card--wide-all card--last-all reveal" data-domain="game" style="--o-game: 3">
+                        <div class="card-media card-media--art" aria-hidden="true">
+                            <svg class="art-d20"><use href="#i-dice-d20"/></svg>
+                            <span class="art-label">dm://dungeon-music</span>
+                        </div>
+                        <div class="card-body">
+                            <p class="meta"><span class="tag tag-game">Open source</span><span data-translate="dm-meta">Python · ferramenta para RPG</span></p>
+                            <h3>DM: Dungeon Music</h3>
+                            <p data-translate="dm-desc">Ferramenta para mestres de RPG: músicas, efeitos sonoros, imagens e apresentações em um só lugar. Atualizada com frequência.</p>
+                            <div class="links">
+                                <a class="link" href="https://github.com/NeonBrasil/DM-Dungeon-Music" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg><span data-translate="dm-link-code">Código</span><svg class="icon icon-ext" aria-hidden="true"><use href="#i-arrow-up-right-from-square"/></svg></a>
+                                <a class="link" href="https://github.com/NeonBrasil/DM-Dungeon-Music/releases" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg><span data-translate="dm-link-download">Download (.exe)</span><svg class="icon icon-ext" aria-hidden="true"><use href="#i-arrow-up-right-from-square"/></svg></a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="also">
+                    <h3 class="also-title" data-translate="also-title">Também</h3>
+                    <ul class="also-list">
+                        <li class="also-item reveal">
+                            <img src="img/castelo.webp" width="352" height="500" alt="Capa do livro O Castelo da Imaginação" data-translate-attr="alt:book-alt" loading="lazy" decoding="async">
+                            <div>
+                                <p class="meta" data-translate="book-meta">Livro · 2019</p>
+                                <h4 data-translate="book-title">O Castelo da Imaginação</h4>
+                                <p data-translate="book-desc">Romance de fantasia para o público jovem: um grupo de aventureiros atrás do tesouro de Estor Murc encontra um castelo onde a imaginação cria qualquer coisa.</p>
+                                <div class="links">
+                                    <a class="link" href="https://www.amazon.com.br/Castelo-Imagina%C3%A7%C3%A3o-Cayque-Gast%C3%B3n-Cicarelli/dp/6590152802" target="_blank" rel="noopener noreferrer">Amazon<svg class="icon icon-ext" aria-hidden="true"><use href="#i-arrow-up-right-from-square"/></svg></a>
+                                    <a class="link" href="https://www.linkedin.com/posts/cayque-cicarelli_udemy-clubedeautores-livro-activity-6988218512708112385-tDeJ" target="_blank" rel="noopener noreferrer">LinkedIn<svg class="icon icon-ext" aria-hidden="true"><use href="#i-arrow-up-right-from-square"/></svg></a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="also-item reveal">
+                            <img src="img/palestra.webp" width="640" height="352" alt="Cayque apresentando uma palestra de tecnologia" data-translate-attr="alt:talks-alt" loading="lazy" decoding="async">
+                            <div>
+                                <p class="meta" data-translate="talks-meta">Palestras · voluntariado</p>
+                                <h4 data-translate="talks-title">Palestras de tecnologia</h4>
+                                <p data-translate="talks-desc">Palestras para todas as idades, como a da Paróquia São João Batista, sobre como a tecnologia pode melhorar a vida das pessoas. Também dou aulas voluntárias de matemática e informática.</p>
+                                <div class="links">
+                                    <a class="link" href="https://www.linkedin.com/posts/cayque-cicarelli_finalmente-depois-de-muita-espera-consegui-activity-6987832625465831426-sILv" target="_blank" rel="noopener noreferrer">LinkedIn<svg class="icon icon-ext" aria-hidden="true"><use href="#i-arrow-up-right-from-square"/></svg></a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <p class="more">
+                    <a class="link" href="https://github.com/NeonBrasil" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg><span data-translate="more-github">Mais projetos no GitHub</span><svg class="icon icon-ext" aria-hidden="true"><use href="#i-arrow-up-right-from-square"/></svg></a>
+                </p>
+            </div>
+        </section>
+
+        <!-- ========== 02 EXPERIÊNCIA ========== -->
+        <section class="section" id="experiencia" aria-labelledby="exp-title">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <p class="eyebrow"><span class="eyebrow-num">02</span><span>Quest log</span></p>
+                        <h2 id="exp-title" data-translate="exp-title">Experiência</h2>
+                    </div>
+                </div>
+
+                <ol class="timeline">
+                    <li class="tl-item reveal" data-domain="game">
+                        <p class="tl-when"><time datetime="2026-03">03/2026</time> — <span data-translate="now">atual</span></p>
+                        <div class="tl-body">
+                            <h3 data-translate="exp-1-role">Desenvolvedor líder (freelance)</h3>
+                            <p class="tl-org"><span data-translate="exp-1-org">Letterflux Studios (EUA) · remoto</span><span class="tag tag-game" data-translate="tag-games">Jogos</span></p>
+                            <ul>
+                                <li data-translate="exp-1-b1">Único desenvolvedor de A Week to Remember, visual novel comercial em Ren'Py/Python, num time de 10 pessoas.</li>
+                                <li data-translate="exp-1-b2">Toda a engenharia de software, builds, Git e Scrum; sistema de escolhas com 5 finais e estrutura para mais de 20.</li>
+                                <li data-translate="exp-1-b3">Playtests fechados de pré-alfa e alfa no itch.io e GUI com acessibilidade completa.</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="tl-item reveal" data-domain="sec">
+                        <p class="tl-when"><time datetime="2024-03">03/2024</time> — <time datetime="2025-12">12/2025</time></p>
+                        <div class="tl-body">
+                            <h3 data-translate="exp-2-role">Estagiário de Segurança da Informação</h3>
+                            <p class="tl-org"><span>Edenred Brasil · São Paulo</span><span class="tag tag-sec" data-translate="tag-security">Segurança</span></p>
+                            <ul>
+                                <li data-translate="exp-2-b1">Administrei o DLP Proofpoint (cerca de 90% das análises da empresa) e atuei em mais de 100 incidentes, reportando os casos a gestores e diretores.</li>
+                                <li data-translate="exp-2-b2">No Splunk (SPL), identifiquei um vazamento crítico por padrões em logs de transferência.</li>
+                                <li data-translate="exp-2-b3">OSINT com a Axur — perfis e sites falsos, golpes e uso indevido da marca — com relatórios para takedown.</li>
+                                <li data-translate="exp-2-b4">Análises de GAP (NIST 800-53, ISO 27001), atualização de mais de 5 políticas de SI e apoio à governança de acessos (IAM/AD).</li>
+                                <li data-translate="exp-2-b5">Criei o Awareness & Tech News, que reduziu em mais de 30% os incidentes relacionados.</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="tl-item reveal" data-domain="dev">
+                        <p class="tl-when"><time datetime="2022-08">08/2022</time> — <time datetime="2023-05">05/2023</time></p>
+                        <div class="tl-body">
+                            <h3 data-translate="exp-3-role">Desenvolvedor Júnior — Ruby on Rails</h3>
+                            <p class="tl-org"><span data-translate="exp-3-org">Sankhya Jiva · remoto</span><span class="tag tag-neutral" data-translate="tag-dev">Dev web</span></p>
+                            <ul>
+                                <li data-translate="exp-3-b1">Mantive e evoluí o principal web app legado da empresa com Ruby on Rails, JavaScript e SQL (PostgreSQL).</li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="tl-item reveal" data-domain="edu">
+                        <p class="tl-when"><time datetime="2025-12">12/2025</time></p>
+                        <div class="tl-body">
+                            <h3 data-translate="exp-4-role">Bacharelado em Ciência da Computação</h3>
+                            <p class="tl-org"><span>Centro Universitário FEI</span><span class="tag tag-neutral" data-translate="tag-edu">Formação</span></p>
+                            <ul>
+                                <li data-translate="exp-4-b1">TCC: algoritmo de IA para identificar um tipo específico de deepfake.</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ol>
+                <p class="tl-note" data-translate="exp-note">CompTIA Security+ em preparação · cursos introdutórios por Google, Cisco, Microsoft e FGV</p>
+            </div>
+        </section>
+
+        <!-- ========== 03 SOBRE ========== -->
+        <section class="section" id="sobre" aria-labelledby="about-title">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <p class="eyebrow"><span class="eyebrow-num">03</span><span data-translate="about-eyebrow">Ficha de personagem</span></p>
+                        <h2 id="about-title" data-translate="about-title">Sobre</h2>
+                    </div>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-bio">
+                        <p class="about-lead" data-translate="about-lead">Sou bacharel em Ciência da Computação pela FEI e trabalho nas duas áreas da tecnologia que mais me prendem: jogos e segurança da informação.</p>
+                        <p data-translate-html="about-p2">Na Edenred Brasil, passei quase dois anos no time de segurança: administrei o DLP, investiguei incidentes, rodei buscas no Splunk e criei uma série semanal de conscientização. Hoje sou o único desenvolvedor de <em>A Week to Remember</em>, visual novel comercial da Letterflux Studios, um estúdio dos EUA.</p>
+                        <p data-translate-html="about-p3">Uma área alimenta a outra. Quem pensa como atacante testa melhor um jogo — em <em>The New Year's School</em>, parte do meu trabalho foi tentar hackeá-lo. E quem faz jogo aprende a prender a atenção das pessoas, o que ajuda muito quando o assunto é conscientização em segurança.</p>
+                    </div>
+
+                    <aside class="sheet reveal" aria-labelledby="sheet-title">
+                        <p class="sheet-head"><span id="sheet-title" data-translate="sheet-head">Ficha</span><span>Cayque G. Cicarelli</span></p>
+                        <dl>
+                            <div><dt data-translate="sheet-class">Classe</dt><dd data-translate-html="sheet-class-val">Game Developer / Segurança da Informação <span class="muted">(multiclasse)</span></dd></div>
+                            <div><dt data-translate="sheet-base">Base</dt><dd data-translate="sheet-base-val">São Paulo, Brasil · aberto a remoto</dd></div>
+                            <div><dt data-translate="sheet-langs">Idiomas</dt><dd data-translate="sheet-langs-val">Português (nativo) · Inglês (fluente) · Espanhol (intermediário)</dd></div>
+                            <div><dt data-translate="sheet-edu">Formação</dt><dd data-translate="sheet-edu-val">Ciência da Computação — FEI, 2025</dd></div>
+                            <div><dt data-translate="sheet-certs">Certificações</dt><dd data-translate="sheet-certs-val">CompTIA Security+ (em preparação) · cursos por Google, Cisco, Microsoft e FGV</dd></div>
+                            <div><dt>Side quests</dt><dd data-translate="sheet-side-val">Livro publicado (2019) · palestras · aulas voluntárias de matemática e informática</dd></div>
+                        </dl>
+                    </aside>
+                </div>
+
+                <div class="skills">
+                    <div class="skill-col skill-col--game reveal">
+                        <h3><svg class="icon" aria-hidden="true"><use href="#i-gamepad"/></svg>Game Dev</h3>
+                        <dl class="skill-groups">
+                            <div><dt>Engines</dt><dd><ul class="chips"><li>Ren'Py</li><li>Godot (GDScript)</li><li>Unity</li><li>Naninovel</li></ul></dd></div>
+                            <div><dt data-translate="sk-code">Programação</dt><dd><ul class="chips"><li>Python</li><li>JavaScript</li><li>SQL</li><li>Ruby on Rails</li><li>Git</li></ul></dd></div>
+                            <div><dt data-translate="sk-qa">QA e testes</dt><dd><ul class="chips"><li data-translate="chip-manual-tests">testes manuais</li><li data-translate="chip-bug-reports">bug reports com reprodução</li><li>playtests</li><li data-translate="chip-net-tests">testes de rede multiplayer</li></ul></dd></div>
+                            <div><dt>Design</dt><dd><ul class="chips"><li data-translate="chip-branching">narrativa ramificada</li><li>GUI/UX</li><li data-translate="chip-a11y">acessibilidade</li><li data-translate="chip-docs">documentação técnica</li></ul></dd></div>
+                        </dl>
+                    </div>
+                    <div class="skill-col skill-col--sec reveal">
+                        <h3><svg class="icon" aria-hidden="true"><use href="#i-shield-halved"/></svg><span data-translate="skills-sec-title">Segurança</span></h3>
+                        <dl class="skill-groups">
+                            <div><dt>GRC</dt><dd><ul class="chips"><li>ISO 27001</li><li>NIST 800-53</li><li>LGPD</li><li data-translate="chip-risk">gestão de riscos</li><li data-translate="chip-gap">análise de GAP</li><li data-translate="chip-policies">políticas de SI</li></ul></dd></div>
+                            <div><dt data-translate="sk-soc">SOC e dados</dt><dd><ul class="chips"><li>DLP (Proofpoint)</li><li>Splunk (SPL)</li><li data-translate="chip-logs">análise de logs</li><li data-translate="chip-ir">resposta a incidentes</li></ul></dd></div>
+                            <div><dt data-translate="sk-intel">Inteligência</dt><dd><ul class="chips"><li>OSINT (Axur)</li><li data-translate="chip-takedown">takedown de golpes</li></ul></dd></div>
+                            <div><dt data-translate="sk-access">Acessos</dt><dd><ul class="chips"><li>IAM</li><li>Active Directory</li></ul></dd></div>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== 04 CONTATO ========== -->
+        <section class="section contact" id="contato" aria-labelledby="contact-title">
+            <div class="container">
+                <p class="eyebrow"><span class="eyebrow-num">04</span><span>Save point</span></p>
+                <div class="contact-grid">
+                    <div>
+                        <h2 class="contact-title" id="contact-title" data-translate="contact-title">Vamos conversar?</h2>
+                        <p class="contact-text" data-translate="contact-text">Estou aberto a oportunidades em desenvolvimento de jogos e em segurança da informação, em São Paulo ou remoto. Pode mandar um email ou me chamar no LinkedIn.</p>
+                        <div class="email-row">
+                            <a class="email-link" href="mailto:cayquecicarelli@gmail.com">cayquecicarelli@gmail.com</a>
+                            <button type="button" class="btn btn-ghost btn-small js-copy-email" data-email="cayquecicarelli@gmail.com">
+                                <svg class="icon icon-copy" aria-hidden="true"><use href="#i-copy"/></svg>
+                                <svg class="icon icon-check" aria-hidden="true"><use href="#i-check"/></svg>
+                                <span class="copy-label" data-translate="copy-email">Copiar</span>
+                            </button>
+                        </div>
+                    </div>
+                    <ul class="contact-links">
+                        <li><a href="https://www.linkedin.com/in/cayque-cicarelli/" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-linkedin"/></svg>LinkedIn<span class="sub">/in/cayque-cicarelli</span></a></li>
+                        <li><a href="https://github.com/NeonBrasil" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg>GitHub<span class="sub">/NeonBrasil</span></a></li>
+                        <li><button type="button" class="js-open-cv"><svg class="icon" aria-hidden="true"><use href="#i-file-arrow-down"/></svg><span data-translate="contact-cv">Currículo</span><span class="sub">PDF</span></button></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p>© <span class="js-year">2026</span> Cayque Gastón Cicarelli</p>
+            <div class="footer-extras">
+                <button type="button" class="ach-counter js-open-ach">
+                    <svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg>
+                    <span data-translate="ach-title">Conquistas</span>
+                    <span class="ach-count">0/7</span>
+                </button>
+                <button type="button" class="konami-hint js-konami-hint" aria-label="Easter egg: digite o código Konami ou toque aqui" data-translate-attr="aria-label:konami-label" title="↑ ↑ ↓ ↓ ← → ← → B A">↑↑↓↓←→←→BA</button>
             </div>
         </div>
     </footer>
 
-    <!-- Escolha de currículo (aberta pelo botão Baixar Currículo) -->
-    <dialog id="cv-dialog" class="cv-dialog" aria-labelledby="cv-dialog-title">
-        <div class="cv-dialog-content">
-            <form method="dialog">
-                <button type="submit" class="cv-dialog-close" aria-label="Fechar"><i class="fas fa-times"></i></button>
-            </form>
-            <h3 id="cv-dialog-title" data-translate="cv-dialog-title">Qual currículo você quer baixar?</h3>
+    <!-- Escolha de currículo -->
+    <dialog class="modal" id="cv-dialog" aria-labelledby="cv-dialog-title">
+        <div class="modal-inner">
+            <form method="dialog"><button type="submit" class="icon-btn modal-close" aria-label="Fechar" data-translate-attr="aria-label:close"><svg class="icon" aria-hidden="true"><use href="#i-xmark"/></svg></button></form>
+            <h2 class="modal-title" id="cv-dialog-title" data-translate="cv-dialog-title">Qual currículo você quer?</h2>
+            <p class="modal-sub" data-translate="cv-dialog-sub">PDF no idioma do site (português ou inglês).</p>
             <div class="cv-options">
-                <a id="cv-option-security" class="cv-option" href="cvs/Cayque_Cicarelli_CV_Seguranca.docx.pdf" download="Cayque_Cicarelli_CV_Seguranca.pdf">
-                    <i class="fas fa-shield-alt"></i>
-                    <span data-translate="cv-option-security">Segurança da Informação</span>
-                    <i class="fas fa-download cv-option-download"></i>
+                <a id="cv-option-gamedev" class="cv-option" data-cv="game" href="cvs/Cayque_Cicarelli_CV_Game_Developer_PT.docx.pdf" download="Cayque_Cicarelli_CV_Game_Developer_PT.pdf">
+                    <svg class="icon cv-icon" aria-hidden="true"><use href="#i-gamepad"/></svg>
+                    <span class="cv-option-text"><strong data-translate="cv-option-gamedev">Game Developer</strong><small>Ren'Py · Godot · Unity · QA</small></span>
+                    <span class="cv-badge" data-translate="cv-recommended">Recomendado</span>
+                    <svg class="icon icon-dl" aria-hidden="true"><use href="#i-download"/></svg>
                 </a>
-                <a id="cv-option-gamedev" class="cv-option" href="cvs/Cayque_Cicarelli_CV_Game_Developer_PT.docx.pdf" download="Cayque_Cicarelli_CV_Game_Developer_PT.pdf">
-                    <i class="fas fa-gamepad"></i>
-                    <span data-translate="cv-option-gamedev">Game Developer</span>
-                    <i class="fas fa-download cv-option-download"></i>
+                <a id="cv-option-security" class="cv-option" data-cv="sec" href="cvs/Cayque_Cicarelli_CV_Seguranca.docx.pdf" download="Cayque_Cicarelli_CV_Seguranca.pdf">
+                    <svg class="icon cv-icon" aria-hidden="true"><use href="#i-shield-halved"/></svg>
+                    <span class="cv-option-text"><strong data-translate="cv-option-security">Segurança da Informação</strong><small>GRC · SOC · DLP · IAM</small></span>
+                    <span class="cv-badge" data-translate="cv-recommended">Recomendado</span>
+                    <svg class="icon icon-dl" aria-hidden="true"><use href="#i-download"/></svg>
                 </a>
             </div>
         </div>
     </dialog>
 
-    <script src="translations.js"></script>
-    <script src="script.js"></script>
+    <!-- Conquistas -->
+    <dialog class="modal" id="ach-dialog" aria-labelledby="ach-dialog-title">
+        <div class="modal-inner">
+            <form method="dialog"><button type="submit" class="icon-btn modal-close" aria-label="Fechar" data-translate-attr="aria-label:close"><svg class="icon" aria-hidden="true"><use href="#i-xmark"/></svg></button></form>
+            <h2 class="modal-title" id="ach-dialog-title" data-translate="ach-title">Conquistas</h2>
+            <p class="modal-sub"><span class="ach-count">0/7</span> <span data-translate="ach-unlocked-count">desbloqueadas</span></p>
+            <ul class="ach-list"></ul>
+            <label class="ach-toggle"><input type="checkbox" class="js-ach-toasts" checked> <span data-translate="ach-toasts">Mostrar notificações de conquista</span></label>
+        </div>
+    </dialog>
+
+    <div class="toasts" role="status" aria-live="polite"></div>
+
+    <button type="button" class="btn btn-small crt-exit" hidden>
+        <svg class="icon" aria-hidden="true"><use href="#i-power-off"/></svg>
+        <span data-translate="crt-exit">Sair do modo CRT</span>
+    </button>
 </body>
 </html>

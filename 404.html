@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark" data-route="all">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- O GitHub Pages serve esta página em qualquer caminho inexistente, então os links precisam ser absolutos -->
+    <base href="/cayque/">
+    <title>404 — Game over · Cayque Cicarelli</title>
+    <meta name="robots" content="noindex">
+    <meta name="theme-color" content="#12100E">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600&display=swap">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('cayque:theme') === 'light') document.documentElement.setAttribute('data-theme', 'light');
+            } catch (e) { /* sem armazenamento */ }
+        })();
+    </script>
+</head>
+<body>
+    <main class="gameover">
+        <p class="eyebrow">Erro 404</p>
+        <h1 class="gameover-title">Game over</h1>
+        <p class="gameover-text" data-en="This level doesn't exist — the link may be wrong or the page has moved.">Essa fase não existe — o link pode estar errado ou a página mudou de lugar.</p>
+        <p class="gameover-continue"><span data-en="Continue?">Continuar?</span> <span class="gameover-count" aria-hidden="true">9</span></p>
+        <div class="gameover-actions">
+            <a class="btn btn-primary" href="./">▸ <span data-en="Yes, back to the start">Sim, voltar ao início</span></a>
+            <button type="button" class="btn btn-ghost js-no" data-en="No">Não</button>
+        </div>
+        <p class="gameover-reply" aria-live="polite"></p>
+    </main>
+
+    <script>
+        (function () {
+            var lang = 'pt';
+            try { lang = (localStorage.getItem('cayque:lang') || 'pt').slice(0, 2); } catch (e) { /* sem armazenamento */ }
+            var en = lang === 'en';
+            if (en) {
+                document.documentElement.lang = 'en';
+                document.querySelectorAll('[data-en]').forEach(function (node) { node.textContent = node.getAttribute('data-en'); });
+            }
+
+            var replies = en
+                ? { no: 'Are you sure? There are still plenty of levels to play.', end: 'Game over... just kidding. You can always continue.' }
+                : { no: 'Tem certeza? Ainda tem muita fase pra jogar.', end: 'Fim de jogo... brincadeira. Dá pra continuar quando quiser.' };
+            var reply = document.querySelector('.gameover-reply');
+            var count = document.querySelector('.gameover-count');
+
+            document.querySelector('.js-no').addEventListener('click', function () { reply.textContent = replies.no; });
+
+            var n = 9;
+            var timer = setInterval(function () {
+                n -= 1;
+                count.textContent = String(n);
+                if (n <= 0) {
+                    clearInterval(timer);
+                    reply.textContent = replies.end;
+                }
+            }, 1000);
+        })();
+    </script>
+</body>
+</html>

@@ -1,427 +1,599 @@
-// Esperar que o DOM seja completamente carregado
-document.addEventListener('DOMContentLoaded', function() {
-    // Elementos do DOM
-    const menuBtn = document.querySelector('.menu-btn');
-    const navLinks = document.querySelector('.nav-links');
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
-    const contactForm = document.getElementById('contactForm');
-    const sections = document.querySelectorAll('section');
-    const navItems = document.querySelectorAll('.nav-links a');
-    const themeToggle = document.querySelector('.theme-toggle');
-    const body = document.documentElement; // Usando :root para alternar classes
-    
-    // Verificar preferência de tema salva
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-        body.classList.add('light-theme');
-        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-    } else {
-        themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-    }
-    
-    // Alternar tema
-    themeToggle.addEventListener('click', () => {
-        if (body.classList.contains('light-theme')) {
-            body.classList.remove('light-theme');
-            themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-            localStorage.setItem('theme', 'dark');
-        } else {
-            body.classList.add('light-theme');
-            themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-            localStorage.setItem('theme', 'light');
-        }
-    });
+// Portfólio — Cayque Cicarelli
+// Seções: armazenamento · idioma · tema · rota · visual novel · conquistas ·
+//         Konami/CRT · currículos · navegação · contato · animações · inicialização
+(() => {
+    'use strict';
 
-    // Toggle do menu mobile
-    menuBtn.addEventListener('click', function() {
-        menuBtn.classList.toggle('open');
-        navLinks.classList.toggle('active');
-    });
-    
-    // Criar partículas animadas no fundo
-    createParticles();
-    
-    // Função para criar partículas animadas
-    function createParticles() {
-        const particleContainer = document.querySelector('.particle-container');
-        if (!particleContainer) return;
-        
-        const particleCount = 20; // Número de partículas
-        
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.classList.add('particle');
-            
-            // Tamanho aleatório
-            const size = Math.random() * 50 + 10; // Entre 10px e 60px
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            
-            // Posição aleatória
-            const posX = Math.random() * 100;
-            const posY = Math.random() * 100;
-            particle.style.left = `${posX}%`;
-            particle.style.top = `${posY}%`;
-            
-            // Duração e atraso aleatórios para a animação
-            const duration = Math.random() * 20 + 10; // Entre 10s e 30s
-            const delay = Math.random() * 5; // Entre 0s e 5s
-            particle.style.animationDuration = `${duration}s`;
-            particle.style.animationDelay = `${delay}s`;
-            
-            // Opacidade aleatória
-            const opacity = Math.random() * 0.3 + 0.05; // Entre 0.05 e 0.35
-            particle.style.opacity = opacity;
-            
-            particleContainer.appendChild(particle);
-        }
+    const root = document.documentElement;
+    const $ = (sel, ctx = document) => ctx.querySelector(sel);
+    const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    // ---------- Armazenamento ----------
+    // O localStorage é compartilhado por todos os sites em neonbrasil.github.io,
+    // por isso as chaves levam o prefixo "cayque:".
+    const store = {
+        get(key) {
+            try { return localStorage.getItem('cayque:' + key); } catch { return null; }
+        },
+        set(key, value) {
+            try { localStorage.setItem('cayque:' + key, value); } catch { /* modo privado ou bloqueado */ }
+        },
+    };
+
+    function readJSON(key, fallback) {
+        try { return JSON.parse(store.get(key)) ?? fallback; } catch { return fallback; }
     }
 
-    // Fechar menu ao clicar em um link
-    navLinks.addEventListener('click', function() {
-        menuBtn.classList.remove('open');
-        navLinks.classList.remove('active');
-    });
+    function setParam(name, value) {
+        const url = new URL(location.href);
+        if (value) url.searchParams.set(name, value);
+        else url.searchParams.delete(name);
+        history.replaceState(history.state, '', url);
+    }
 
-    // Janela de escolha do currículo
-    const cvButton = document.getElementById('download-cv');
-    const cvDialog = document.getElementById('cv-dialog');
-    if (cvButton && cvDialog) {
-        cvButton.addEventListener('click', () => cvDialog.showModal());
+    function icon(name) {
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('class', 'icon');
+        svg.setAttribute('aria-hidden', 'true');
+        const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
+        use.setAttribute('href', '#i-' + name);
+        svg.append(use);
+        return svg;
+    }
 
-        cvDialog.addEventListener('click', function(e) {
-            // Fechar ao clicar fora da caixa ou depois de escolher um currículo
-            if (e.target === cvDialog || e.target.closest('.cv-option')) {
-                cvDialog.close();
-            }
+    function el(tag, className, text) {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text !== undefined) node.textContent = text;
+        return node;
+    }
+
+    // ---------- Idioma ----------
+    const dict = typeof translations !== 'undefined' ? translations : {};
+    let lang = root.lang.startsWith('en') ? 'en' : 'pt';
+    const t = (key) => (dict[lang] && dict[lang][key]) || (dict.pt && dict.pt[key]) || '';
+
+    function applyLanguage(next) {
+        lang = next === 'en' ? 'en' : 'pt';
+        root.lang = lang === 'en' ? 'en' : 'pt-BR';
+
+        $$('[data-translate]').forEach((node) => {
+            const value = t(node.dataset.translate);
+            if (value) node.textContent = value;
         });
-    }
-
-    // Filtro de projetos
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            // Remover classe active de todos os botões
-            filterBtns.forEach(btn => btn.classList.remove('active'));
-            // Adicionar classe active ao botão clicado
-            this.classList.add('active');
-
-            const filter = this.getAttribute('data-filter');
-
-            projectCards.forEach(card => {
-                if (filter === 'all') {
-                    card.style.display = 'block';
-                } else if (card.getAttribute('data-category') === filter) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-
-                // Adicionar animação de fade-in
-                setTimeout(() => {
-                    if (card.style.display === 'block') {
-                        card.style.opacity = '1';
-                    }
-                }, 100);
+        $$('[data-translate-html]').forEach((node) => {
+            const value = t(node.dataset.translateHtml);
+            if (value) node.innerHTML = value;
+        });
+        $$('[data-translate-attr]').forEach((node) => {
+            node.dataset.translateAttr.split(';').forEach((pair) => {
+                const [attr, key] = pair.split(':').map((s) => s.trim());
+                const value = t(key);
+                if (attr && value) node.setAttribute(attr, value);
             });
         });
-    });
 
-    // Formulário de contato
-    if (contactForm) {
-        // Validação do formulário antes do envio
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Impede o envio padrão do formulário
-            
-            // Validação básica dos campos
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            if (!name || !email || !subject || !message) {
-                alert('Por favor, preencha todos os campos.');
+        document.title = t('page-title') || document.title;
+
+        // Os currículos mudam conforme o idioma
+        ['security', 'gamedev'].forEach((type) => {
+            const link = document.getElementById('cv-option-' + type);
+            const file = t('cv-file-' + type);
+            if (link && file) {
+                link.setAttribute('href', file);
+                // Nome do arquivo baixado sem a pasta e sem o ".docx" que veio da conversão
+                link.setAttribute('download', file.split('/').pop().replace('.docx.pdf', '.pdf'));
+            }
+        });
+
+        $$('[data-lang]').forEach((btn) => btn.setAttribute('aria-pressed', String(btn.dataset.lang === lang)));
+        root.classList.remove('i18n-pending');
+        document.dispatchEvent(new CustomEvent('langchange'));
+    }
+
+    // ---------- Tema ----------
+    function applyTheme(theme) {
+        root.dataset.theme = theme === 'light' ? 'light' : 'dark';
+        const meta = $('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', root.dataset.theme === 'light' ? '#F4EFE6' : '#12100E');
+    }
+
+    // ---------- Rota (tudo / game dev / segurança) ----------
+    const ROUTES = ['all', 'game', 'sec'];
+    let route = ROUTES.includes(root.dataset.route) ? root.dataset.route : 'all';
+
+    function setRoute(next, { fromUser = true } = {}) {
+        route = ROUTES.includes(next) ? next : 'all';
+        root.dataset.route = route;
+        $$('[data-route-set]').forEach((btn) => btn.setAttribute('aria-pressed', String(btn.dataset.routeSet === route)));
+
+        if (fromUser) {
+            store.set('route', route);
+            // Link compartilhável: ?route=game ou ?route=sec
+            const url = new URL(location.href);
+            url.searchParams.delete('rota');
+            if (route === 'all') url.searchParams.delete('route');
+            else url.searchParams.set('route', route);
+            history.replaceState(history.state, '', url);
+        }
+
+        if (route !== 'all') markRouteSeen(route);
+        document.dispatchEvent(new CustomEvent('routechange'));
+    }
+
+    function markRouteSeen(seenRoute) {
+        const seen = new Set(readJSON('routes-seen', []));
+        seen.add(seenRoute);
+        store.set('routes-seen', JSON.stringify([...seen]));
+        if (seen.has('game') && seen.has('sec')) unlock('multiclass');
+    }
+
+    // ---------- Visual novel ----------
+    function initVisualNovel(vn) {
+        const textEl = $('.vn-text', vn);
+        const live = $('.vn-live', vn);
+        const box = $('.vn-box', vn);
+        const nextBtn = $('.vn-next', vn);
+        const choices = $('.vn-choices', vn);
+        const after = $('.vn-after', vn);
+        const log = $('.vn-log', vn);
+        const logList = $('.vn-log-list', vn);
+        const logClose = $('.js-vn-log-close', vn);
+        const historyBtn = $('[data-vn="history"]', vn);
+        const skipBtn = $('[data-vn="skip"]', vn);
+        const autoBtn = $('[data-vn="auto"]', vn);
+        const clock = $('.vn-clock', vn);
+
+        const INTRO = ['vn-line-1', 'vn-line-2', 'vn-line-3', 'vn-line-4'];
+        const CHAR_MS = 24;
+        const seen = []; // falas já exibidas, para o histórico
+        let index = 0;
+        let current = null;
+        let typer = null;
+        let autoTimer = null;
+        let auto = false;
+
+        // Leitores de tela recebem a fala inteira pela região "ao vivo", não letra por letra
+        textEl.setAttribute('aria-hidden', 'true');
+
+        function setState(state) {
+            vn.dataset.state = state;
+            choices.hidden = state !== 'choice';
+            after.hidden = state !== 'after';
+            nextBtn.hidden = state !== 'talk';
+            skipBtn.disabled = state !== 'talk';
+            autoBtn.disabled = state !== 'talk';
+        }
+
+        function stopTyping() {
+            clearInterval(typer);
+            typer = null;
+            vn.classList.remove('is-typing');
+        }
+
+        function say(key, { instant = false } = {}) {
+            stopTyping();
+            clearTimeout(autoTimer);
+            current = key;
+            if (seen[seen.length - 1] !== key) seen.push(key);
+
+            const line = t(key);
+            live.textContent = line;
+            if (instant || reducedMotion.matches) {
+                lineDone();
                 return;
             }
-            
-            // Formatar o corpo do email
-            const body = `Nome: ${name}\n\nEmail: ${email}\n\nMensagem:\n${message}`;
-            
-            // Abrir o cliente de email do usuário (Gmail ou outro)
-            // Substitua 'seu-email@gmail.com' pelo email que deve receber as mensagens
-            window.location.href = `mailto:seu-email@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            
-            // Limpar o formulário após o envio
-            contactForm.reset();
+
+            let shown = 0;
+            textEl.textContent = '';
+            vn.classList.add('is-typing');
+            typer = setInterval(() => {
+                shown += 1;
+                textEl.textContent = line.slice(0, shown);
+                if (shown >= line.length) lineDone();
+            }, CHAR_MS);
+        }
+
+        function lineDone() {
+            stopTyping();
+            textEl.textContent = t(current);
+            if (vn.dataset.state !== 'talk') return;
+            if (index >= INTRO.length - 1) openChoices();
+            else if (auto) autoTimer = setTimeout(advance, 1200 + t(current).length * 20);
+        }
+
+        function advance() {
+            if (vn.dataset.state !== 'talk') return;
+            if (typer) {
+                lineDone(); // primeiro clique completa a fala
+                return;
+            }
+            if (index < INTRO.length - 1) {
+                index += 1;
+                say(INTRO[index]);
+            }
+        }
+
+        function openChoices({ focus = vn.contains(document.activeElement) } = {}) {
+            setState('choice');
+            if (focus) $('.vn-choice', choices).focus({ preventScroll: true });
+        }
+
+        function choose(next) {
+            setState('after');
+            say('vn-reply-' + next);
+            setRoute(next);
+            unlock('route');
+            store.set('vn-done', '1');
+            $('a', after).focus({ preventScroll: true });
+        }
+
+        function skip() {
+            if (vn.dataset.state !== 'talk') return;
+            for (let i = index + 1; i < INTRO.length; i += 1) seen.push(INTRO[i]);
+            index = INTRO.length - 1;
+            say(INTRO[index], { instant: true });
+        }
+
+        function toggleAuto() {
+            auto = !auto;
+            autoBtn.setAttribute('aria-pressed', String(auto));
+            clearTimeout(autoTimer);
+            if (auto && !typer && vn.dataset.state === 'talk') autoTimer = setTimeout(advance, 700);
+        }
+
+        function renderLog() {
+            logList.replaceChildren(...seen.map((key) => {
+                const item = el('li');
+                item.append(el('span', 'vn-log-who', 'Cayque'), el('p', 'vn-log-line', t(key)));
+                return item;
+            }));
+            logList.scrollTop = logList.scrollHeight;
+        }
+
+        function openLog() {
+            renderLog();
+            log.hidden = false;
+            logClose.focus({ preventScroll: true });
+        }
+
+        function closeLog() {
+            log.hidden = true;
+            historyBtn.focus({ preventScroll: true });
+        }
+
+        function updateClock() {
+            if (!clock) return;
+            clock.textContent = new Intl.DateTimeFormat(lang === 'en' ? 'en-US' : 'pt-BR', {
+                hour: '2-digit', minute: '2-digit', timeZone: 'America/Sao_Paulo',
+            }).format(new Date());
+        }
+
+        box.addEventListener('click', (e) => {
+            if (e.target.closest('a, .vn-quick, .vn-after')) return;
+            advance();
         });
+        $$('.vn-choice', vn).forEach((btn) => btn.addEventListener('click', () => choose(btn.dataset.choice)));
+        $('.js-vn-reroute', vn).addEventListener('click', () => {
+            say('vn-line-4', { instant: true });
+            openChoices({ focus: true });
+        });
+        historyBtn.addEventListener('click', openLog);
+        logClose.addEventListener('click', closeLog);
+        log.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                e.stopPropagation();
+                closeLog();
+            }
+        });
+        skipBtn.addEventListener('click', skip);
+        autoBtn.addEventListener('click', toggleAuto);
+
+        document.addEventListener('langchange', () => {
+            if (current) {
+                live.textContent = t(current);
+                lineDone();
+            }
+            if (!log.hidden) renderLog();
+            updateClock();
+        });
+
+        // Se a rota mudar pelo seletor dos projetos, a resposta do diálogo acompanha
+        document.addEventListener('routechange', () => {
+            if (vn.dataset.state === 'after' && current !== 'vn-reply-' + route) {
+                say('vn-reply-' + route, { instant: true });
+            }
+        });
+
+        updateClock();
+        setInterval(updateClock, 30000);
+
+        // Quem chega por um link com rota (ou já escolheu antes) vai direto para a resposta
+        const params = new URLSearchParams(location.search);
+        if (params.has('route') || params.has('rota') || store.get('vn-done')) {
+            index = INTRO.length - 1;
+            seen.push(...INTRO);
+            setState('after');
+            say('vn-reply-' + route, { instant: true });
+        } else {
+            setState('talk');
+            say(INTRO[0]);
+        }
     }
 
-    // Animação de scroll suave para links de navegação
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 70, // Ajuste para o header fixo
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
+    // ---------- Conquistas ----------
+    const ACHIEVEMENTS = [
+        { id: 'route', icon: 'code-branch' },
+        { id: 'multiclass', icon: 'dice-d20' },
+        { id: 'explorer', icon: 'compass' },
+        { id: 'loot', icon: 'file-arrow-down' },
+        { id: 'polyglot', icon: 'language' },
+        { id: 'contact', icon: 'envelope' },
+        { id: 'konami', icon: 'gamepad', secret: true },
+    ];
+    const unlocked = new Set(readJSON('achievements', []));
+    const toastRegion = $('.toasts');
+    let toastsOn = store.get('toasts') !== 'off';
 
-    // Destacar item de navegação ativo durante o scroll
-    window.addEventListener('scroll', function() {
-        let current = '';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            
-            if (pageYOffset >= sectionTop - 200) {
-                current = section.getAttribute('id');
-            }
-        });
-        
-        navItems.forEach(item => {
-            item.classList.remove('active');
-            if (item.getAttribute('href').substring(1) === current) {
-                item.classList.add('active');
-            }
-        });
-    });
+    function unlock(id) {
+        if (unlocked.has(id)) return;
+        unlocked.add(id);
+        store.set('achievements', JSON.stringify([...unlocked]));
+        renderAchievements();
+        showToast(id);
 
-    // Animação de entrada para elementos quando visíveis na tela
-    const animateOnScroll = function() {
-        const elements = document.querySelectorAll('.animate-on-scroll');
-        
-        elements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            
-            if (elementPosition < windowHeight - 100) {
-                element.classList.add('animated');
-            }
-        });
-    };
-
-    // Adicionar classe para animação em elementos específicos
-    const addAnimationClass = function() {
-        document.querySelectorAll('.about-img, .about-text, .skill, .project-card, .contact-item').forEach(el => {
-            el.classList.add('animate-on-scroll');
-        });
-    };
-
-    addAnimationClass();
-    window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll(); // Executar uma vez no carregamento da página
-
-    // Adicionar efeito de parallax no hero
-    window.addEventListener('scroll', function() {
-        const hero = document.querySelector('.hero');
-        const scrollPosition = window.pageYOffset;
-        
-        if (hero) {
-            hero.style.backgroundPositionY = scrollPosition * 0.5 + 'px';
+        if (!unlocked.has('platinum') && ACHIEVEMENTS.every((a) => unlocked.has(a.id))) {
+            unlocked.add('platinum');
+            store.set('achievements', JSON.stringify([...unlocked]));
+            renderAchievements();
+            setTimeout(() => showToast('platinum'), 900);
         }
-    });
-
-    // Adicionar animação de digitação ao texto do hero
-    const typeWriter = function() {
-        const heroTitle = document.querySelector('.hero h1');
-        
-        if (heroTitle) {
-            const text = heroTitle.innerHTML;
-            heroTitle.innerHTML = '';
-            
-            let i = 0;
-            const typing = setInterval(function() {
-                if (i < text.length) {
-                    heroTitle.innerHTML += text.charAt(i);
-                    i++;
-                } else {
-                    clearInterval(typing);
-                }
-            }, 100);
-        }
-    };
-
-    // Descomente a linha abaixo se quiser ativar o efeito de digitação
-    // typeWriter();
-
-    // Adicionar animação às barras de habilidades
-    const animateSkills = function() {
-        const skillBars = document.querySelectorAll('.skill-level');
-        
-        skillBars.forEach(bar => {
-            const width = bar.style.width;
-            bar.style.width = '0';
-            
-            setTimeout(() => {
-                bar.style.width = width;
-            }, 500);
-        });
-    };
-
-    // Executar animação das habilidades quando a seção estiver visível
-    const skillsObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateSkills();
-                skillsObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.5 });
-
-    const skillsSection = document.querySelector('.skills');
-    if (skillsSection) {
-        skillsObserver.observe(skillsSection);
     }
 
-    // Adicionar botão de voltar ao topo
-    const createBackToTopButton = function() {
-        const button = document.createElement('button');
-        button.innerHTML = '<i class="fas fa-arrow-up"></i>';
-        button.classList.add('back-to-top');
-        document.body.appendChild(button);
-        
-        window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 300) {
-                button.classList.add('show');
-            } else {
-                button.classList.remove('show');
-            }
-        });
-        
-        button.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    };
+    function showToast(id) {
+        if (!toastsOn || !toastRegion) return;
+        const def = ACHIEVEMENTS.find((a) => a.id === id) || { icon: 'trophy' };
 
-    createBackToTopButton();
+        const toast = el('div', 'toast');
+        const iconBox = el('span', 'toast-icon');
+        iconBox.append(icon(def.icon));
+        const body = el('div');
+        body.append(el('p', 'toast-kicker', t('ach-unlocked')), el('p', 'toast-title', t(`ach-${id}-title`)));
+        if (id === 'platinum') {
+            const link = el('a', '', t('ach-platinum-cta') + ' →');
+            link.href = '#contato';
+            body.append(link);
+        }
+        toast.append(iconBox, body);
+        toastRegion.append(toast);
 
-    // Adicionar estilos para o botão de voltar ao topo
-    const addBackToTopStyles = function() {
-        const style = document.createElement('style');
-        style.textContent = `
-            .back-to-top {
-                position: fixed;
-                bottom: 30px;
-                right: 30px;
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                background-color: var(--primary-color);
-                color: white;
-                border: none;
-                cursor: pointer;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 1.2rem;
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.3s ease;
-                z-index: 999;
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            }
-            
-            .back-to-top.show {
-                opacity: 1;
-                visibility: visible;
-            }
-            
-            .back-to-top:hover {
-                background-color: #5a52d5;
-                transform: translateY(-3px);
-            }
-        `;
-        document.head.appendChild(style);
-    };
-
-    addBackToTopStyles();
-
-    // Adicionar animação aos ícones sociais
-    const socialIcons = document.querySelectorAll('.social-icons a');
-    
-    socialIcons.forEach((icon, index) => {
-        icon.style.opacity = '0';
-        icon.style.transform = 'translateY(20px)';
-        
+        requestAnimationFrame(() => requestAnimationFrame(() => toast.classList.add('is-in')));
         setTimeout(() => {
-            icon.style.opacity = '1';
-            icon.style.transform = 'translateY(0)';
-        }, 300 + (index * 100));
-    });
-});
-
-// Language functionality
-let currentLanguage = 'pt';
-
-function changeLanguage(lang) {
-    currentLanguage = lang;
-    localStorage.setItem('selectedLanguage', lang);
-    
-    // Update all elements with data-translate attribute
-    document.querySelectorAll('[data-translate]').forEach(element => {
-        const key = element.getAttribute('data-translate');
-        if (translations[lang] && translations[lang][key]) {
-            // Se for o botão de download CV, preservar o ícone
-            if (key === 'download-cv') {
-                const icon = element.querySelector('i');
-                element.textContent = translations[lang][key];
-                if (icon) {
-                    element.prepend(icon);
-                } else {
-                    element.innerHTML = '<i class="fas fa-download"></i> ' + translations[lang][key];
-                }
-            } else {
-                element.textContent = translations[lang][key];
-            }
-        }
-    });
-    
-    // Update placeholders
-    const placeholders = {
-        'name': translations[lang]['form-name'],
-        'email': translations[lang]['form-email'],
-        'subject': translations[lang]['form-subject'],
-        'message': translations[lang]['form-message']
-    };
-    
-    Object.keys(placeholders).forEach(id => {
-        const element = document.getElementById(id);
-        if (element) {
-            element.placeholder = placeholders[id];
-        }
-    });
-}
-
-function initLanguage() {
-    // Check if language is saved in localStorage
-    const savedLanguage = localStorage.getItem('selectedLanguage');
-    if (savedLanguage) {
-        currentLanguage = savedLanguage;
-        document.getElementById('languageSelect').value = savedLanguage;
-        changeLanguage(savedLanguage);
+            toast.classList.remove('is-in');
+            setTimeout(() => toast.remove(), 400);
+        }, id === 'platinum' ? 8000 : 4200);
     }
-}
 
-// Language selector event listener
-document.addEventListener('DOMContentLoaded', function() {
-    const languageSelect = document.getElementById('languageSelect');
-    if (languageSelect) {
-        languageSelect.addEventListener('change', function() {
-            changeLanguage(this.value);
+    function renderAchievements() {
+        const count = ACHIEVEMENTS.filter((a) => unlocked.has(a.id)).length;
+        $$('.ach-count').forEach((node) => { node.textContent = `${count}/${ACHIEVEMENTS.length}`; });
+        $$('.js-open-ach').forEach((btn) => btn.classList.toggle('is-platinum', unlocked.has('platinum')));
+
+        const list = $('.ach-list');
+        if (!list) return;
+        const items = ACHIEVEMENTS.map((a) => {
+            const isUnlocked = unlocked.has(a.id);
+            const isHidden = a.secret && !isUnlocked;
+            const item = el('li', 'ach-item' + (isUnlocked ? '' : ' is-locked'));
+            const iconBox = el('span', 'ach-icon');
+            iconBox.append(icon(isUnlocked ? a.icon : 'lock'));
+            const text = el('div');
+            text.append(
+                el('p', 'ach-name', isHidden ? t('ach-secret') : t(`ach-${a.id}-title`)),
+                el('p', 'ach-desc', isHidden ? t('ach-secret-desc') : t(`ach-${a.id}-desc`)),
+            );
+            item.append(iconBox, text);
+            return item;
+        });
+        if (unlocked.has('platinum')) {
+            const item = el('li', 'ach-item');
+            const iconBox = el('span', 'ach-icon');
+            iconBox.append(icon('trophy'));
+            const text = el('div');
+            text.append(el('p', 'ach-name', t('ach-platinum-title')), el('p', 'ach-desc', t('ach-platinum-desc')));
+            item.append(iconBox, text);
+            items.unshift(item);
+        }
+        list.replaceChildren(...items);
+    }
+
+    // ---------- Código Konami → modo CRT ----------
+    const KONAMI = ['arrowup', 'arrowup', 'arrowdown', 'arrowdown', 'arrowleft', 'arrowright', 'arrowleft', 'arrowright', 'b', 'a'];
+    const typedKeys = [];
+    const crtExit = $('.crt-exit');
+
+    function toggleCRT(force) {
+        const on = typeof force === 'boolean' ? force : !root.classList.contains('crt');
+        if (on && !document.getElementById('crt-font')) {
+            const font = el('link');
+            font.id = 'crt-font';
+            font.rel = 'stylesheet';
+            font.href = 'https://fonts.googleapis.com/css2?family=VT323&display=swap';
+            document.head.append(font);
+        }
+        root.classList.toggle('crt', on);
+        if (crtExit) crtExit.hidden = !on;
+        if (on) unlock('konami');
+    }
+
+    // ---------- Navegação ----------
+    const menuBtn = $('.menu-toggle');
+
+    function setMenu(open) {
+        root.classList.toggle('menu-open', open);
+        if (!menuBtn) return;
+        menuBtn.setAttribute('aria-expanded', String(open));
+        menuBtn.setAttribute('aria-label', t(open ? 'menu-close' : 'menu-label'));
+    }
+
+    // ---------- Inicialização ----------
+    applyTheme(root.dataset.theme);
+    renderAchievements();
+    applyLanguage(lang);
+    setRoute(route, { fromUser: false });
+
+    const vn = $('#vn');
+    if (vn) initVisualNovel(vn);
+
+    // Idioma
+    $$('[data-lang]').forEach((btn) => btn.addEventListener('click', () => {
+        if (btn.dataset.lang === lang) return;
+        applyLanguage(btn.dataset.lang);
+        store.set('lang', lang);
+        setParam('lang', lang === 'en' ? 'en' : null);
+        unlock('polyglot');
+    }));
+
+    // Tema
+    $('.theme-toggle')?.addEventListener('click', () => {
+        applyTheme(root.dataset.theme === 'light' ? 'dark' : 'light');
+        store.set('theme', root.dataset.theme);
+    });
+
+    // Seletor de rota nos projetos
+    $$('[data-route-set]').forEach((btn) => btn.addEventListener('click', () => {
+        setRoute(btn.dataset.routeSet);
+        if (route !== 'all') unlock('route');
+    }));
+
+    // Diálogos (currículos e conquistas)
+    const cvDialog = $('#cv-dialog');
+    const achDialog = $('#ach-dialog');
+    $$('.js-open-cv').forEach((btn) => btn.addEventListener('click', () => {
+        setMenu(false);
+        cvDialog?.showModal();
+    }));
+    $$('.cv-option').forEach((link) => link.addEventListener('click', () => {
+        unlock('loot');
+        setTimeout(() => cvDialog.close(), 150);
+    }));
+    $$('.js-open-ach').forEach((btn) => btn.addEventListener('click', () => {
+        renderAchievements();
+        achDialog?.showModal();
+    }));
+    $$('dialog.modal').forEach((dialog) => dialog.addEventListener('click', (e) => {
+        if (e.target === dialog) dialog.close(); // clique fora da caixa
+    }));
+
+    const toastToggle = $('.js-ach-toasts');
+    if (toastToggle) {
+        toastToggle.checked = toastsOn;
+        toastToggle.addEventListener('change', () => {
+            toastsOn = toastToggle.checked;
+            store.set('toasts', toastsOn ? 'on' : 'off');
         });
     }
-    
-    // Initialize language
-    initLanguage();
-});
+
+    // Konami (teclado) e dica clicável no rodapé (celular)
+    document.addEventListener('keydown', (e) => {
+        if (e.target instanceof Element && e.target.closest('input, textarea, select, [contenteditable="true"]')) return;
+        typedKeys.push(e.key.toLowerCase());
+        if (typedKeys.length > KONAMI.length) typedKeys.shift();
+        if (typedKeys.join() === KONAMI.join()) {
+            typedKeys.length = 0;
+            toggleCRT();
+        }
+    });
+    $('.js-konami-hint')?.addEventListener('click', () => toggleCRT());
+    crtExit?.addEventListener('click', () => toggleCRT(false));
+
+    // Menu mobile
+    menuBtn?.addEventListener('click', () => setMenu(!root.classList.contains('menu-open')));
+    $('#site-nav')?.addEventListener('click', (e) => {
+        if (e.target.closest('a')) setMenu(false);
+    });
+    window.matchMedia('(min-width: 861px)').addEventListener('change', (e) => {
+        if (e.matches) setMenu(false);
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape') return;
+        if (root.classList.contains('menu-open')) setMenu(false);
+        else if (root.classList.contains('crt') && !$('dialog[open]')) toggleCRT(false);
+    });
+
+    // Header ganha borda depois de rolar
+    const header = $('.site-header');
+    const onScroll = () => header?.classList.toggle('is-scrolled', window.scrollY > 8);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Link ativo no menu + conquista "Explorador"
+    const navLinks = $$('.site-nav a');
+    const visited = new Set();
+    const toVisit = ['projetos', 'experiencia', 'sobre', 'contato'];
+    const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const id = entry.target.id;
+            navLinks.forEach((link) => {
+                if (link.getAttribute('href') === '#' + id) link.setAttribute('aria-current', 'true');
+                else link.removeAttribute('aria-current');
+            });
+            if (toVisit.includes(id) && !visited.has(id)) {
+                visited.add(id);
+                if (toVisit.every((s) => visited.has(s))) unlock('explorer');
+            }
+        });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    $$('main section[id]').forEach((section) => sectionObserver.observe(section));
+
+    // Copiar email
+    $$('.js-copy-email').forEach((btn) => {
+        const label = $('.copy-label', btn);
+        let timer;
+        btn.addEventListener('click', async () => {
+            const email = btn.dataset.email;
+            let copied = false;
+            try {
+                await navigator.clipboard.writeText(email);
+                copied = true;
+            } catch {
+                const tmp = el('textarea');
+                tmp.value = email;
+                tmp.setAttribute('readonly', '');
+                tmp.style.cssText = 'position:fixed;opacity:0';
+                document.body.append(tmp);
+                tmp.select();
+                try { copied = document.execCommand('copy'); } catch { copied = false; }
+                tmp.remove();
+            }
+            if (!copied) return;
+            btn.classList.add('is-done');
+            label.textContent = t('copied');
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                btn.classList.remove('is-done');
+                label.textContent = t('copy-email');
+            }, 2200);
+            unlock('contact');
+        });
+    });
+    $$('a[href^="mailto:"]').forEach((link) => link.addEventListener('click', () => unlock('contact')));
+
+    // Elementos aparecem suavemente ao rolar
+    if ('IntersectionObserver' in window && !reducedMotion.matches) {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('is-visible');
+                revealObserver.unobserve(entry.target);
+            });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+        $$('.reveal').forEach((node) => revealObserver.observe(node));
+        root.classList.add('reveal-ready');
+    }
+
+    $$('.js-year').forEach((node) => { node.textContent = String(new Date().getFullYear()); });
+})();
