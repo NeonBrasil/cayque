@@ -70,8 +70,9 @@ const translations = {
         'form-message': 'Sua Mensagem',
         'form-submit': 'Enviar Mensagem',
         'footer-copyright': '© 2026 Cayque Cicarelli. Todos os direitos reservados.',
-        // Arquivo do currículo em português
-        'cv-file': 'curriculo_Cayque.pdf'
+        // Arquivos dos currículos em português
+        'cv-file-security': 'cvs/Cayque_Cicarelli_CV_Seguranca.docx.pdf',
+        'cv-file-gamedev': 'cvs/Cayque_Cicarelli_CV_Game_Developer_PT.docx.pdf'
     },
     en: {
         'page-title': 'Cayque Cicarelli | Security Analyst',
@@ -144,8 +145,9 @@ const translations = {
         'form-message': 'Your Message',
         'form-submit': 'Send Message',
         'footer-copyright': '© 2026 Cayque Cicarelli. All rights reserved.',
-        // Arquivo do currículo em inglês
-        'cv-file': 'Cayque_Ciccarelli_Resume.pdf'
+        // Arquivos dos currículos em inglês
+        'cv-file-security': 'cvs/Cayque_Cicarelli_Resume_InfoSec_EN.docx.pdf',
+        'cv-file-gamedev': 'cvs/Cayque_Cicarelli_Resume_GameDev.docx.pdf'
     }
 };
 
@@ -167,12 +169,16 @@ function switchLanguage(lang) {
         }
     });
 
-    // Atualizar link do currículo de Segurança (muda conforme o idioma)
-    const cvSecurityLink = document.getElementById('cv-option-security');
-    if (cvSecurityLink && translations[lang]['cv-file']) {
-        cvSecurityLink.setAttribute('href', translations[lang]['cv-file']);
-        cvSecurityLink.setAttribute('download', translations[lang]['cv-file']);
-    }
+    // Atualizar links dos currículos (mudam conforme o idioma)
+    ['security', 'gamedev'].forEach(type => {
+        const link = document.getElementById('cv-option-' + type);
+        const file = translations[lang]['cv-file-' + type];
+        if (link && file) {
+            link.setAttribute('href', file);
+            // Nome do arquivo baixado sem a pasta e sem o ".docx" que veio da conversão
+            link.setAttribute('download', file.split('/').pop().replace('.docx.pdf', '.pdf'));
+        }
+    });
 
     // Atualizar title da página
     const titleElement = document.querySelector('title');
