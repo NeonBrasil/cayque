@@ -1,6 +1,7 @@
 // Portfólio — Cayque Cicarelli
 // Seções: armazenamento · idioma · tema · rota · visual novel · conquistas ·
-//         Konami/CRT · currículos · navegação · contato · animações · inicialização
+//         Konami/CRT · Snake · currículos e detalhes técnicos · navegação · contato ·
+//         animações · console · inicialização
 (() => {
     'use strict';
 
@@ -327,10 +328,12 @@
         { id: 'route', icon: 'code-branch' },
         { id: 'multiclass', icon: 'dice-d20' },
         { id: 'explorer', icon: 'compass' },
+        { id: 'inspect', icon: 'magnifying-glass' },
         { id: 'loot', icon: 'file-arrow-down' },
         { id: 'polyglot', icon: 'language' },
         { id: 'contact', icon: 'envelope' },
         { id: 'konami', icon: 'gamepad', secret: true },
+        { id: 'snake', icon: 'worm', secret: true },
     ];
     const unlocked = new Set(readJSON('achievements', []));
     const toastRegion = $('.toasts');
@@ -353,6 +356,12 @@
 
     function showToast(id) {
         if (!toastsOn || !toastRegion) return;
+        // Um diálogo aberto fica na camada de cima e cobriria a notificação: ela espera ele fechar
+        const openDialog = $('dialog[open]');
+        if (openDialog) {
+            openDialog.addEventListener('close', () => showToast(id), { once: true });
+            return;
+        }
         const def = ACHIEVEMENTS.find((a) => a.id === id) || { icon: 'trophy' };
 
         const toast = el('div', 'toast');
@@ -427,6 +436,196 @@
         if (on) unlock('konami');
     }
 
+    // ---------- Snake (easter egg do celular de A Week to Remember) ----------
+    function initSnake(dialog) {
+        const lcd = $('.snake-lcd', dialog);
+        const canvas = $('.snake-canvas', dialog);
+        const ctx = canvas.getContext('2d');
+        const msg = $('.js-snake-msg', dialog);
+        const live = $('.js-snake-live', dialog);
+        const scoreEl = $('.js-snake-score', dialog);
+        const bestEl = $('.js-snake-best', dialog);
+
+        const COLS = 20;
+        const ROWS = 12;
+        const CELL = canvas.width / COLS;
+        const DIRS = { up: [0, -1], down: [0, 1], left: [-1, 0], right: [1, 0] };
+        const OPPOSITE = { up: 'down', down: 'up', left: 'right', right: 'left' };
+        // Setas, WASD e o teclado numérico do Nokia (2/4/6/8)
+        const KEYS = {
+            arrowup: 'up', w: 'up', 2: 'up',
+            arrowdown: 'down', s: 'down', 8: 'down',
+            arrowleft: 'left', a: 'left', 4: 'left',
+            arrowright: 'right', d: 'right', 6: 'right',
+        };
+
+        let snake = [];
+        let food = [0, 0];
+        let dir = 'right';
+        let queue = []; // viradas pedidas entre um passo e outro
+        let score = 0;
+        let best = Number(store.get('snake-best')) || 0;
+        let state = 'idle'; // idle | play | paused | over
+        let msgKey = 'snake-start';
+        let timer = null;
+        let overAt = 0;
+        let touchStart = null;
+
+        const pad = (n) => String(n).padStart(4, '0');
+
+        function placeFood() {
+            const free = [];
+            for (let x = 0; x < COLS; x += 1) {
+                for (let y = 0; y < ROWS; y += 1) {
+                    if (!snake.some(([sx, sy]) => sx === x && sy === y)) free.push([x, y]);
+                }
+            }
+            food = free.length ? free[Math.floor(Math.random() * free.length)] : [-1, -1];
+        }
+
+        function updateHud() {
+            scoreEl.textContent = pad(score);
+            bestEl.textContent = pad(best);
+        }
+
+        function draw() {
+            const style = getComputedStyle(lcd);
+            ctx.fillStyle = style.getPropertyValue('--lcd-bg').trim();
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = style.getPropertyValue('--lcd-ink').trim();
+            snake.forEach(([x, y]) => ctx.fillRect(x * CELL + 1, y * CELL + 1, CELL - 2, CELL - 2));
+            // Comida em "+", como no Nokia
+            const [fx, fy] = food;
+            ctx.fillRect(fx * CELL + 5, fy * CELL + 2, 4, CELL - 4);
+            ctx.fillRect(fx * CELL + 2, fy * CELL + 5, CELL - 4, 4);
+        }
+
+        function reset() {
+            snake = [[6, 6], [5, 6], [4, 6]];
+            dir = 'right';
+            queue = [];
+            score = 0;
+            placeFood();
+            updateHud();
+            draw();
+        }
+
+        function showMsg(key) {
+            msgKey = key;
+            msg.hidden = !key;
+            if (!key) return;
+            msg.textContent = key === 'snake-over'
+                ? `${t('snake-over').replace('{n}', score)} ${t('snake-again')}`
+                : t(key);
+        }
+
+        function tick() {
+            if (queue.length) dir = queue.shift();
+            const [dx, dy] = DIRS[dir];
+            // Sem paredes: a cobra sai de um lado e entra do outro
+            const head = [(snake[0][0] + dx + COLS) % COLS, (snake[0][1] + dy + ROWS) % ROWS];
+            const eats = head[0] === food[0] && head[1] === food[1];
+            const body = eats ? snake : snake.slice(0, -1); // sem comer, a cauda sai da frente
+            if (body.some(([x, y]) => x === head[0] && y === head[1])) {
+                gameOver();
+                return;
+            }
+            snake = [head, ...body];
+            if (eats) {
+                score += 1;
+                if (score > best) {
+                    best = score;
+                    store.set('snake-best', String(best));
+                }
+                if (score >= 5) unlock('snake');
+                updateHud();
+                placeFood();
+            }
+            draw();
+            timer = setTimeout(tick, Math.max(80, 150 - score * 4));
+        }
+
+        function start() {
+            if (state === 'over') {
+                if (Date.now() - overAt < 400) return false; // não reinicia com a tecla que ainda estava apertada
+                reset();
+            }
+            state = 'play';
+            showMsg(null);
+            clearTimeout(timer);
+            timer = setTimeout(tick, 150);
+            return true;
+        }
+
+        function pause() {
+            if (state !== 'play') return;
+            clearTimeout(timer);
+            state = 'paused';
+            showMsg('snake-paused');
+        }
+
+        function gameOver() {
+            clearTimeout(timer);
+            state = 'over';
+            overAt = Date.now();
+            showMsg('snake-over');
+            live.textContent = msg.textContent;
+        }
+
+        function turn(next) {
+            if (state !== 'play' && !start()) return;
+            const last = queue.length ? queue[queue.length - 1] : dir;
+            if (next === last || next === OPPOSITE[last]) return;
+            if (queue.length < 2) queue.push(next);
+        }
+
+        dialog.addEventListener('keydown', (e) => {
+            const next = KEYS[e.key.toLowerCase()];
+            if (!next) return;
+            e.preventDefault();
+            turn(next);
+        });
+        $$('.snake-key', dialog).forEach((btn) => btn.addEventListener('click', () => turn(btn.dataset.dir)));
+
+        // No celular: deslizar na tela vira, tocar começa
+        lcd.addEventListener('touchstart', (e) => {
+            touchStart = [e.touches[0].clientX, e.touches[0].clientY];
+        }, { passive: true });
+        lcd.addEventListener('touchend', (e) => {
+            if (!touchStart) return;
+            const dx = e.changedTouches[0].clientX - touchStart[0];
+            const dy = e.changedTouches[0].clientY - touchStart[1];
+            touchStart = null;
+            if (Math.max(Math.abs(dx), Math.abs(dy)) < 24) {
+                if (state !== 'play') start();
+                return;
+            }
+            if (Math.abs(dx) > Math.abs(dy)) turn(dx > 0 ? 'right' : 'left');
+            else turn(dy > 0 ? 'down' : 'up');
+        });
+
+        dialog.addEventListener('close', () => {
+            clearTimeout(timer);
+            state = 'idle';
+        });
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) pause();
+        });
+        document.addEventListener('langchange', () => {
+            if (msgKey) showMsg(msgKey);
+        });
+
+        return {
+            open() {
+                if (dialog.open) return;
+                reset();
+                state = 'idle';
+                showMsg('snake-start');
+                dialog.showModal();
+            },
+        };
+    }
+
     // ---------- Navegação ----------
     const menuBtn = $('.menu-toggle');
 
@@ -482,6 +681,15 @@
         renderAchievements();
         achDialog?.showModal();
     }));
+    // Detalhes técnicos dos jogos
+    $$('.js-open-tech').forEach((btn) => btn.addEventListener('click', () => {
+        document.getElementById('tech-' + btn.dataset.tech)?.showModal();
+        unlock('inspect');
+    }));
+    // Snake: pelo botão nos detalhes de A Week to Remember ou digitando "snake"
+    const snakeDialog = $('#snake-dialog');
+    const snakeGame = snakeDialog ? initSnake(snakeDialog) : null;
+    $$('.js-open-snake').forEach((btn) => btn.addEventListener('click', () => snakeGame?.open()));
     $$('dialog.modal').forEach((dialog) => dialog.addEventListener('click', (e) => {
         if (e.target === dialog) dialog.close(); // clique fora da caixa
     }));
@@ -495,14 +703,18 @@
         });
     }
 
-    // Konami (teclado) e dica clicável no rodapé (celular)
+    // Konami e "snake" (teclado) e dica clicável no rodapé (celular)
     document.addEventListener('keydown', (e) => {
         if (e.target instanceof Element && e.target.closest('input, textarea, select, [contenteditable="true"]')) return;
+        if (snakeDialog?.open) return; // durante o jogo, as teclas são do Snake
         typedKeys.push(e.key.toLowerCase());
         if (typedKeys.length > KONAMI.length) typedKeys.shift();
         if (typedKeys.join() === KONAMI.join()) {
             typedKeys.length = 0;
             toggleCRT();
+        } else if (typedKeys.slice(-5).join('') === 'snake') {
+            typedKeys.length = 0;
+            snakeGame?.open();
         }
     });
     $('.js-konami-hint')?.addEventListener('click', () => toggleCRT());
@@ -596,4 +808,28 @@
     }
 
     $$('.js-year').forEach((node) => { node.textContent = String(new Date().getFullYear()); });
+
+    // ---------- Console: recado para devs ----------
+    // bugReport() imita o bug report in-game de A Week to Remember: onde a pessoa está, a última fala e as specs
+    window.bugReport = () => {
+        const middle = window.innerHeight / 2;
+        const section = $$('main section[id]').find((s) => {
+            const box = s.getBoundingClientRect();
+            return box.top <= middle && box.bottom >= middle;
+        });
+        const done = ACHIEVEMENTS.filter((a) => unlocked.has(a.id)).length;
+        console.log([
+            'bug report · neonbrasil.github.io/cayque',
+            `page: ${location.href}`,
+            `section: #${section ? section.id : 'inicio'}`,
+            `route: ${route} · lang: ${lang} · theme: ${root.dataset.theme}${root.classList.contains('crt') ? ' · crt' : ''}`,
+            `last_line: "${$('.vn-text')?.textContent ?? ''}"`,
+            `achievements: ${done}/${ACHIEVEMENTS.length}`,
+            `viewport: ${window.innerWidth}×${window.innerHeight} @${window.devicePixelRatio}x`,
+            `user_agent: ${navigator.userAgent}`,
+            `date: ${new Date().toISOString()}`,
+        ].join('\n'));
+        console.log(t('console-bug'));
+    };
+    console.log('%c' + t('console-hello'), 'font: 500 12px/1.6 "IBM Plex Mono", monospace; color: #F2762E');
 })();

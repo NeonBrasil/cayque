@@ -1091,7 +1091,12 @@ p { text-wrap: pretty; }
 }
 .sheet dd { font-size: .94rem; }
 
-.skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+/* Cada área ocupa a largura toda, com os grupos em duas colunas:
+   Game Dev tem mais grupos que Segurança e, lado a lado, sobrava um buraco no box verde */
+.skills { display: grid; gap: 20px; }
+@media (min-width: 861px) {
+    .skill-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 40px; }
+}
 
 .skill-col {
     padding: 22px 24px 10px;
@@ -1334,6 +1339,143 @@ p { text-wrap: pretty; }
 .ach-toggle { display: flex; align-items: center; gap: 10px; font-size: .88rem; color: var(--text-2); cursor: pointer; }
 .ach-toggle input { width: 16px; height: 16px; accent-color: var(--accent); }
 
+/* Detalhes técnicos dos jogos: diálogo largo, com rolagem */
+.modal--wide { width: min(760px, calc(100% - 32px)); }
+.modal--game { --dom: var(--game); }
+.modal-kicker {
+    margin-bottom: 4px;
+    font-family: var(--font-mono);
+    font-size: .68rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--dom, var(--text-3));
+}
+/* O X acompanha a rolagem (mesma posição do X dos outros diálogos) */
+.modal--wide .modal-inner > form:first-child { position: sticky; top: 26px; z-index: 2; height: 0; }
+.modal--wide .modal-close { top: -16px; right: -14px; background: var(--bg-2); }
+
+.tech-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 32px;
+    margin-bottom: 14px;
+    padding: 14px 0;
+    border-block: 1px solid var(--line);
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    color: var(--text-3);
+}
+.tech-stats b { display: block; font-size: 1.2rem; font-weight: 500; line-height: 1.3; color: var(--dom); }
+.tech-group { margin-top: 24px; }
+.tech-h {
+    margin-bottom: 12px;
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    font-weight: 500;
+    font-stretch: 100%;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+}
+.tech-group .facts { margin-bottom: 0; }
+.tech-group .facts li { font-size: .9rem; }
+.tech-play {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 4px;
+    padding: 1px 8px;
+    border: 1px solid var(--dom);
+    border-radius: 2px;
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    color: var(--dom);
+    vertical-align: 1px;
+    transition: background-color .15s, color .15s;
+}
+.tech-play:hover { background: var(--dom); color: var(--bg); }
+.tech-note {
+    margin-top: 26px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--line-strong);
+    font-size: .82rem;
+    color: var(--text-3);
+}
+.tech-foot { display: flex; justify-content: flex-end; margin-top: 18px; }
+
+/* Snake: tela de LCD de celular antigo */
+.modal--snake { --dom: var(--game); width: min(400px, calc(100% - 32px)); }
+.snake-phone {
+    display: grid;
+    justify-items: center;
+    gap: 16px;
+    padding: 16px 16px 18px;
+    background: var(--bg);
+    border: 1px solid var(--line-strong);
+    border-radius: 18px;
+}
+.snake-lcd {
+    --lcd-bg: #C7F0D8;
+    --lcd-ink: #43523D;
+    width: 100%;
+    padding: 6px 8px 8px;
+    background: var(--lcd-bg);
+    border-radius: 4px;
+    color: var(--lcd-ink);
+    touch-action: none;
+}
+.snake-hud {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    padding-bottom: 2px;
+    border-bottom: 2px solid var(--lcd-ink);
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+}
+.snake-screen { position: relative; }
+.snake-canvas { display: block; width: 100%; height: auto; image-rendering: pixelated; }
+.snake-msg {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 12px;
+    background: color-mix(in srgb, var(--lcd-bg) 86%, transparent);
+    font-family: var(--font-mono);
+    font-size: .78rem;
+    line-height: 1.5;
+    text-align: center;
+}
+.snake-pad {
+    display: grid;
+    grid-template-columns: repeat(3, 56px);
+    grid-template-rows: repeat(3, 40px);
+    gap: 6px;
+}
+.snake-key {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: var(--bg-2);
+    border: 1px solid var(--line-strong);
+    border-radius: 10px;
+    font-size: .8rem;
+    touch-action: manipulation;
+    transition: background-color .1s, border-color .1s;
+}
+.snake-key small { font-family: var(--font-mono); font-size: .64rem; color: var(--text-3); }
+.snake-key:hover { border-color: var(--text-3); }
+.snake-key:active { background: var(--bg-3); border-color: var(--dom); }
+.snake-key[data-dir="up"] { grid-area: 1 / 2; }
+.snake-key[data-dir="left"] { grid-area: 2 / 1; }
+.snake-key[data-dir="right"] { grid-area: 2 / 3; }
+.snake-key[data-dir="down"] { grid-area: 3 / 2; }
+.snake-help { margin-top: 14px; font-size: .82rem; text-align: center; color: var(--text-3); }
+
 /* ---------- Notificações de conquista ---------- */
 .toasts {
     position: fixed;
@@ -1445,6 +1587,7 @@ p { text-wrap: pretty; }
 :root.crt .feature-game .feature-media::before { filter: blur(24px) grayscale(1) brightness(.35); }
 :root.crt .feature-shot { background: var(--bg-3); }
 :root.crt .feature-shot figcaption { color: var(--text-2); }
+:root.crt .snake-lcd { --lcd-bg: var(--bg-3); --lcd-ink: var(--phosphor); }
 :root.crt .dot-all,
 :root.crt .tag-cross::before,
 :root.crt .bm-game,
@@ -1563,7 +1706,6 @@ p { text-wrap: pretty; }
     .site-nav a[aria-current="true"] { box-shadow: none; color: var(--accent); }
     .menu-open, .menu-open body { overflow: hidden; }
     .header-tools { margin-left: auto; }
-    .skills { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (max-width: 760px) {
