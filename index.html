@@ -382,15 +382,16 @@
                     <article class="card card--wide-all card--last-all reveal" data-domain="game" style="--o-game: 3">
                         <div class="card-media card-media--art" aria-hidden="true">
                             <svg class="art-d20"><use href="#i-dice-d20"/></svg>
-                            <span class="art-label">dm://dungeon-music</span>
+                            <span class="art-label">dm://mesa · v3</span>
                         </div>
                         <div class="card-body">
-                            <p class="meta"><span class="tag tag-game">Open source</span><span data-translate="dm-meta">Python · ferramenta para RPG</span></p>
-                            <h3>DM: Dungeon Music</h3>
-                            <p data-translate="dm-desc">Ferramenta para mestres de RPG: músicas, efeitos sonoros, imagens e apresentações em um só lugar. Atualizada com frequência.</p>
+                            <p class="meta"><span class="tag tag-game">Open source</span><span data-translate="dm-meta">2026 · TypeScript · React · Node.js · mesa virtual de RPG</span></p>
+                            <h3>DM Mesa <span class="h3-aka">(DM: Dungeon Music)</span></h3>
+                            <p data-translate="dm-desc">Mesa virtual de RPG, no estilo do Roll20, que o mestre roda no próprio PC: os jogadores entram pelo navegador, no computador ou no celular, sem instalar nada nem criar conta. Na v3, troquei o antigo app desktop em Python por um servidor Node.js com WebSocket e um cliente em React, com neblina de guerra, iluminação dinâmica, dados 3D, fichas de D&amp;D 5e, Tormenta20, Ordem Paranormal e outros sistemas, e geradores procedurais de masmorras, cavernas, cidades e regiões.</p>
                             <div class="links">
                                 <a class="link" href="https://github.com/NeonBrasil/DM-Dungeon-Music" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-github"/></svg><span data-translate="dm-link-code">Código</span><svg class="icon icon-ext" aria-hidden="true"><use href="#i-arrow-up-right-from-square"/></svg></a>
-                                <a class="link" href="https://github.com/NeonBrasil/DM-Dungeon-Music/releases" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg><span data-translate="dm-link-download">Download (.exe)</span><svg class="icon icon-ext" aria-hidden="true"><use href="#i-arrow-up-right-from-square"/></svg></a>
+                                <a class="link" href="https://github.com/NeonBrasil/DM-Dungeon-Music/releases/latest" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg><span data-translate="dm-link-download">Download</span><svg class="icon icon-ext" aria-hidden="true"><use href="#i-arrow-up-right-from-square"/></svg></a>
+                                <button type="button" class="link js-open-tech" data-tech="dm" aria-haspopup="dialog"><svg class="icon" aria-hidden="true"><use href="#i-magnifying-glass"/></svg><span data-translate="tech-label">Detalhes técnicos</span></button>
                             </div>
                         </div>
                     </article>
@@ -767,6 +768,67 @@
                 </ul>
             </div>
             <p class="tech-note" data-translate="spector-tech-note">Feito com um time internacional para a Spooktober Visual Novel Jam 2026. Além da programação, cuidei de câmeras, luz, easter eggs e alguns textos.</p>
+            <form method="dialog" class="tech-foot"><button type="submit" class="btn btn-ghost btn-small" data-translate="close">Fechar</button></form>
+        </div>
+    </dialog>
+
+    <dialog class="modal modal--wide modal--game" id="tech-dm" aria-labelledby="tech-dm-title">
+        <div class="modal-inner">
+            <form method="dialog"><button type="submit" class="icon-btn modal-close" aria-label="Fechar" data-translate-attr="aria-label:close"><svg class="icon" aria-hidden="true"><use href="#i-xmark"/></svg></button></form>
+            <p class="modal-kicker" data-translate="tech-label">Detalhes técnicos</p>
+            <h2 class="modal-title" id="tech-dm-title">DM Mesa</h2>
+            <p class="modal-sub" data-translate="dm-tech-sub">Mesa virtual de RPG que o mestre hospeda no próprio PC; os jogadores entram pelo navegador, sem instalar nada nem criar conta · open source (MIT), v3.0.0, out/2026</p>
+            <ul class="tech-stats">
+                <li><b data-translate="dm-stat-lines">~17.400</b> <span data-translate="tech-lines-ts">linhas de TypeScript</span></li>
+                <li><b>87</b> <span data-translate="tech-files">arquivos</span></li>
+                <li><b>52</b> <span data-translate="tech-tests">testes automatizados</span></li>
+                <li><b>4</b> <span data-translate="tech-generators">geradores de mapa</span></li>
+            </ul>
+            <p class="stack">TypeScript · React 19 · Vite · Node.js 22 · WebSocket (ws) · three.js · d3-delaunay · Cloudflare Tunnel · node:test</p>
+
+            <div class="tech-group">
+                <h3 class="tech-h" data-translate="dm-tech-h1">Servidor e rede</h3>
+                <ul class="facts">
+                    <li data-translate="dm-tech-1">Servidor Node.js que roda o TypeScript direto, sem etapa de build no servidor, e conversa com os navegadores por WebSocket.</li>
+                    <li data-translate="dm-tech-2">Servidor autoritativo: cada operação passa por checagem de permissão, e cada cliente recebe só o que pode ver. Jogador nunca recebe a camada do mestre nem as notas, e uma porta secreta fechada chega para ele como parede comum.</li>
+                    <li data-translate="dm-tech-3">Os dados são rolados no servidor, com gerador aleatório criptográfico; o cliente só calcula fórmulas sem dados, como os campos das fichas. O parser aceita manter/descartar dados, explosão, rerrolagem, d%, dados Fudge e funções como floor() e max().</li>
+                    <li data-translate="dm-tech-4">Com a iluminação dinâmica ligada, o servidor impede que o token de um jogador atravesse paredes.</li>
+                    <li data-translate="dm-tech-5">Link público grátis com um clique: abre um Cloudflare Quick Tunnel, sem conta, e lê o endereço gerado; se o cloudflared não estiver instalado, baixa o executável oficial. Também funciona em rede local ou VPN (Radmin, Hamachi, ZeroTier).</li>
+                    <li data-translate="dm-tech-6">Backup das campanhas em .zip escrito sem biblioteca: gerado em streaming com o tamanho exato calculado antes, e na importação aceita zips refeitos pelo Windows ou pelo 7-Zip e recusa caminhos com ../ e executáveis. Além disso, cópias automáticas de hora em hora (guarda as últimas 24).</li>
+                </ul>
+            </div>
+            <div class="tech-group">
+                <h3 class="tech-h" data-translate="dm-tech-h2">Mesa, visão e iluminação</h3>
+                <ul class="facts">
+                    <li data-translate="dm-tech-7">Polígono de visão 2D por raycasting até as pontas de cada parede e porta; portas do tipo grade deixam ver, mas não passar.</li>
+                    <li data-translate="dm-tech-8">Máscara de escuridão com visão no escuro, luzes coloridas e memória do que já foi explorado em cada página; o mestre vê uma prévia translúcida do que os jogadores enxergam.</li>
+                    <li data-translate="dm-tech-9">Camadas (mapa, tokens e mestre), régua compartilhada, pings, desfazer/refazer, desenho livre, formas e moldes de magia (círculo, cone, linha e quadrado).</li>
+                    <li data-translate="dm-tech-10">Tokens com condições, auras e barras de vida ligadas à ficha nos dois sentidos; monstros que dividem uma ficha têm PV independentes, e a iniciativa entra na ordem automaticamente.</li>
+                    <li data-translate="dm-tech-11">Música e efeitos sincronizados: o mestre controla, cada jogador ajusta o próprio volume, e cada cena pode ter uma trilha que toca quando os jogadores chegam nela.</li>
+                </ul>
+            </div>
+            <div class="tech-group">
+                <h3 class="tech-h" data-translate="dm-tech-h3">Geradores procedurais de mapa</h3>
+                <ul class="facts">
+                    <li data-translate="dm-tech-12">Cidades: pontos em espiral, Voronoi relaxado (d3-delaunay), bairros, muralha e portões, ruas por Dijkstra no grafo de vértices, quadras, lotes e casas, além de rio, costa, pontes e catedral.</li>
+                    <li data-translate="dm-tech-13">Regiões: relevo por ruído, litoral com ondulações, rios descendo das montanhas, florestas, pântanos e povoados, com estradas por árvore geradora mínima e A* que não ligam ilhas diferentes. Os lugares de aventura do mapa abrem uma masmorra ou caverna no gerador.</li>
+                    <li data-translate="dm-tech-14">Masmorras: salas que crescem a partir da entrada, laços entre áreas, portas secretas, mobília por tema, profundidade calculada por BFS, textos das salas e um gancho de aventura.</li>
+                    <li data-translate="dm-tech-15">Cavernas: autômato celular, túneis entre regiões, água por ruído, câmaras separadas por BFS de várias origens (para revelar a neblina por clique) e contorno suave por marching squares; as paredes viram obstáculos da iluminação.</li>
+                    <li data-translate="dm-tech-16">Traço de nanquim com hachuras, nomes e textos procedurais em português, exportação em PNG ou envio direto para a mesa. Os geradores foram inspirados nos do Watabou, mas o código é próprio.</li>
+                </ul>
+            </div>
+            <div class="tech-group">
+                <h3 class="tech-h" data-translate="dm-tech-h4">Fichas, chat e dados 3D</h3>
+                <ul class="facts">
+                    <li data-translate="dm-tech-17">Fichas de D&amp;D 5e, Star Wars 5e, Call of Cthulhu 7e, Ordem Paranormal e Tormenta20, mais ficha livre e editor de modelos próprios, com campos calculados (@{campo}) e importação/exportação em JSON.</li>
+                    <li data-translate="dm-tech-18">Dados 3D com three.js carregado sob demanda (só baixa na primeira rolagem): os dados rolam na tela e param na face que o servidor já sorteou. A geometria é própria, incluindo o d10 (trapezoedro pentagonal).</li>
+                    <li data-translate="dm-tech-19">Chat com rolagens secretas, sussurros e barra de macros por jogador, com perguntas na hora da rolagem e referências a valores da ficha.</li>
+                    <li data-translate="dm-tech-20">Compêndio do mestre com monstros, itens e magias do SRD 5.1, gerado por script, e conteúdo de Star Wars; bestiário e itens ficam visíveis só para o mestre.</li>
+                    <li data-translate="dm-tech-21">Cartas e baralhos, handouts, efeitos de clima, layout para celular e interface em português.</li>
+                    <li data-translate="dm-tech-22">52 testes com node:test (dados, permissões da sala, visão, fichas, compêndio e backup) e checagem de tipos com TypeScript.</li>
+                </ul>
+            </div>
+            <p class="tech-note" data-translate="dm-tech-note">Projeto pessoal e open source (MIT). Até a v2, o DM: Dungeon Music era um app desktop em Python para músicas, efeitos e imagens; na v3 virou uma mesa virtual completa, que ainda importa a biblioteca de músicas do app antigo. Conteúdo de D&amp;D do SRD 5.1 (CC-BY-4.0); o de Star Wars é material de fã, não oficial.</p>
             <form method="dialog" class="tech-foot"><button type="submit" class="btn btn-ghost btn-small" data-translate="close">Fechar</button></form>
         </div>
     </dialog>

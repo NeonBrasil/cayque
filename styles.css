@@ -937,6 +937,7 @@ p { text-wrap: pretty; }
 
 .card-body { display: flex; flex-direction: column; flex: 1; padding: 20px; }
 .card-body h3 { margin-bottom: 8px; font-size: 1.3rem; }
+.h3-aka { font-family: 'IBM Plex Sans', sans-serif; font-size: .8rem; font-weight: 400; font-stretch: normal; color: var(--text-3); white-space: nowrap; }
 .card-body > p:not(.meta) { margin-bottom: 18px; font-size: .94rem; color: var(--text-2); }
 
 /* ---------- Também ---------- */
