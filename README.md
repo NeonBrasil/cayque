@@ -19,7 +19,7 @@ I am an Information Security Analyst specialized in GRC and Risk Management, wit
 
 * Languages: Python, C++, Ruby on Rails, PostgreSQL.
 * Tools: Active Directory, Axur Platform, Git, Linux.
-* Certifications: CompTIA Security+ (In progress).
+* Certifications: ISO/IEC 27001 Foundation (ITCERTS, 2026); CompTIA Security+ (In progress).
 
 ## Education & Background
 

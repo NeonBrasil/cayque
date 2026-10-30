@@ -406,6 +406,41 @@ p { text-wrap: pretty; }
     color: var(--text-2);
 }
 
+/* Selo da ISO 27001: aparece nas rotas Tudo e Segurança */
+.hero-cert {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: fit-content;
+    max-width: 100%;
+    margin: -8px 0 30px;
+    padding: 8px 18px 8px 8px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--bg-2);
+    text-decoration: none;
+    transition: border-color .15s;
+}
+.hero-cert:hover { border-color: var(--sec); }
+.hero-cert img { width: 52px; height: 52px; flex: none; }
+.hero-cert strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    font-stretch: 104%;
+}
+.hero-cert-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: .74rem;
+    color: var(--text-3);
+}
+.hero-cert-meta .icon-ext { width: .8em; height: .8em; opacity: .7; }
+:root[data-route="game"] .hero-cert { display: none; }
+
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 34px; }
 
 .hero-meta {
@@ -1091,6 +1126,7 @@ p { text-wrap: pretty; }
     color: var(--text-3);
 }
 .sheet dd { font-size: .94rem; }
+.sheet .cert-meta { white-space: nowrap; }
 
 /* Cada área ocupa a largura toda, com os grupos em duas colunas:
    Game Dev tem mais grupos que Segurança e, lado a lado, sobrava um buraco no box verde */

@@ -23,6 +23,7 @@ const translations = {
         "hero-lead-all": "Desenvolvedor de jogos e profissional de segurança da informação. Hoje sou o único dev de <em>A Week to Remember</em> e o programador líder de <em>SPECTOR</em>, ambos da Letterflux Studios (EUA); antes, passei quase dois anos na segurança da Edenred Brasil cuidando de DLP, Splunk e resposta a incidentes.",
         "hero-lead-game": "Desenvolvedor de jogos freelance para a Letterflux Studios (EUA): único dev de <em>A Week to Remember</em>, visual novel comercial em Ren'Py/Python, e programador líder de <em>SPECTOR</em>, terror 3D em Unity 6/C#. Também programo em Godot e trago da segurança o olhar de QA: testar, reproduzir e documentar cada bug.",
         "hero-lead-sec": "Segurança da informação: quase dois anos na Edenred Brasil com DLP (Proofpoint), Splunk, OSINT e GRC — ISO 27001, NIST 800-53 e LGPD. Bacharel em Ciência da Computação pela FEI.",
+        "hero-cert-meta": "ITCERTS · 10/2026 · ver credencial",
         "hero-cta-projects": "Ver projetos",
         "hero-cta-cv": "Baixar currículo",
         "hero-meta-location": "São Paulo, Brasil · remoto",
@@ -258,7 +259,7 @@ const translations = {
         "exp-4-role": "Bacharelado em Ciência da Computação",
         "tag-edu": "Formação",
         "exp-4-b1": "TCC: algoritmo de IA para identificar um tipo específico de deepfake.",
-        "exp-note": "CompTIA Security+ em preparação · cursos introdutórios por Google, Cisco, Microsoft e FGV",
+        "exp-note": "ISO/IEC 27001 Foundation (ITCERTS, 10/2026) · CompTIA Security+ em preparação · cursos introdutórios por Google, Cisco, Microsoft e FGV",
 
         // Sobre
         "about-eyebrow": "Ficha de personagem",
@@ -398,6 +399,7 @@ const translations = {
         "hero-lead-all": "Game developer and information security professional. Right now I'm the sole developer of <em>A Week to Remember</em> and the lead programmer of <em>SPECTOR</em>, both for Letterflux Studios (US); before that, I spent almost two years in security at Edenred Brasil working on DLP, Splunk and incident response.",
         "hero-lead-game": "Freelance game developer for Letterflux Studios (US): sole developer of <em>A Week to Remember</em>, a commercial Ren'Py/Python visual novel, and lead programmer of <em>SPECTOR</em>, a 3D horror game in Unity 6/C#. I also program in Godot, and I bring a QA mindset from security: test, reproduce and document every bug.",
         "hero-lead-sec": "Information security: almost two years at Edenred Brasil working with DLP (Proofpoint), Splunk, OSINT and GRC — ISO 27001, NIST 800-53 and LGPD (Brazil's GDPR). BSc in Computer Science from FEI.",
+        "hero-cert-meta": "ITCERTS · 10/2026 · view credential",
         "hero-cta-projects": "See projects",
         "hero-cta-cv": "Download résumé",
         "hero-meta-location": "São Paulo, Brazil · remote",
@@ -633,7 +635,7 @@ const translations = {
         "exp-4-role": "BSc in Computer Science",
         "tag-edu": "Education",
         "exp-4-b1": "Thesis: an AI algorithm to detect a specific type of deepfake.",
-        "exp-note": "CompTIA Security+ in progress · introductory courses by Google, Cisco, Microsoft and FGV",
+        "exp-note": "ISO/IEC 27001 Foundation (ITCERTS, 10/2026) · CompTIA Security+ in progress · introductory courses by Google, Cisco, Microsoft and FGV",
 
         // About
         "about-eyebrow": "Character sheet",
