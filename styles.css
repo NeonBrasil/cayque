@@ -948,6 +948,15 @@ p { text-wrap: pretty; }
 .card-media--contain img { object-fit: contain; }
 .card:hover .card-media--contain img { transform: none; }
 
+/* Rota "tudo": o último card ocupa a linha inteira, com a mídia ao lado */
+:root[data-route="all"] .card--last-all { grid-column: 1 / -1; flex-direction: row; }
+:root[data-route="all"] .card--last-all .card-media {
+    width: 42%;
+    aspect-ratio: auto;
+    border-bottom: 0;
+    border-right: 1px solid var(--line);
+}
+
 .card-body { display: flex; flex-direction: column; flex: 1; padding: 20px; }
 .card-body h3 { margin-bottom: 8px; font-size: 1.3rem; }
 .h3-aka { font-family: 'IBM Plex Sans', sans-serif; font-size: .8rem; font-weight: 400; font-stretch: normal; color: var(--text-3); white-space: nowrap; }
@@ -1674,10 +1683,15 @@ p { text-wrap: pretty; }
     :root[data-route="all"] .card--wide-all,
     :root[data-route="game"] .card { grid-column: span 1; }
 
-    /* Card que sobra sozinho na última linha: ocupa a largura toda, com a mídia ao lado */
-    :root[data-route="all"] .card--last-all,
+    /* Na rota "tudo" os 6 cards fecham 2 colunas; na "seg", o que sobra sozinho ocupa a linha toda */
+    :root[data-route="all"] .card--last-all { grid-column: span 1; flex-direction: column; }
+    :root[data-route="all"] .card--last-all .card-media {
+        width: auto;
+        aspect-ratio: 16 / 9;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+    }
     :root[data-route="sec"] .card--last-sec { grid-column: 1 / -1; flex-direction: row; }
-    :root[data-route="all"] .card--last-all .card-media,
     :root[data-route="sec"] .card--last-sec .card-media {
         width: 42%;
         aspect-ratio: auto;
