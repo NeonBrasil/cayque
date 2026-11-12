@@ -948,26 +948,6 @@ p { text-wrap: pretty; }
 .card-media--contain img { object-fit: contain; }
 .card:hover .card-media--contain img { transform: none; }
 
-/* DM: Dungeon Music não tem imagem: tile tipográfico */
-.card-media--art {
-    position: relative;
-    display: grid;
-    place-items: center;
-    background-color: var(--bg);
-    background-image:
-        linear-gradient(var(--line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--line) 1px, transparent 1px);
-    background-size: 24px 24px;
-}
-.art-d20 { width: 64px; height: 64px; fill: var(--game); }
-.art-label {
-    position: absolute;
-    left: 14px; bottom: 10px;
-    font-family: var(--font-mono);
-    font-size: .72rem;
-    color: var(--text-3);
-}
-
 .card-body { display: flex; flex-direction: column; flex: 1; padding: 20px; }
 .card-body h3 { margin-bottom: 8px; font-size: 1.3rem; }
 .h3-aka { font-family: 'IBM Plex Sans', sans-serif; font-size: .8rem; font-weight: 400; font-stretch: normal; color: var(--text-3); white-space: nowrap; }
