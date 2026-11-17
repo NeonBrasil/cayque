@@ -19,7 +19,7 @@ I am an Information Security Analyst specialized in GRC and Risk Management, wit
 
 * Languages: Python, C++, Ruby on Rails, PostgreSQL.
 * Tools: Active Directory, Axur Platform, Git, Linux.
-* Certifications: ISO/IEC 27001 Foundation and ISO/IEC 27002 Foundation (ITCERTS, 2026).
+* Certifications: ISO/IEC 27001:2022 Lead Auditor, ISO/IEC 27001 Internal Auditor, ISO/IEC 27001, 27002 and 27007 Foundation, ISO/IEC 27001:2022 + 27002:2022 Dual Achievement and ISO/IEC 27001:2022 Lead Auditor Training Course (ITCERTS, 2026).
 
 ## Education & Background
 

@@ -265,7 +265,7 @@ const translations = {
         "exp-4-role": "Bacharelado em Ciência da Computação",
         "tag-edu": "Formação",
         "exp-4-b1": "TCC: algoritmo de IA para identificar um tipo específico de deepfake.",
-        "exp-note": "ISO/IEC 27001 e 27002 Foundation (ITCERTS, 2026) · cursos introdutórios por Google, Cisco, Microsoft e FGV",
+        "exp-note": "ISO/IEC 27001 Lead Auditor e Internal Auditor, 27001, 27002 e 27007 Foundation (ITCERTS, 2026) · cursos introdutórios por Google, Cisco, Microsoft e FGV",
 
         // Sobre
         "about-eyebrow": "Ficha de personagem",
@@ -647,7 +647,7 @@ const translations = {
         "exp-4-role": "BSc in Computer Science",
         "tag-edu": "Education",
         "exp-4-b1": "Thesis: an AI algorithm to detect a specific type of deepfake.",
-        "exp-note": "ISO/IEC 27001 and 27002 Foundation (ITCERTS, 2026) · introductory courses by Google, Cisco, Microsoft and FGV",
+        "exp-note": "ISO/IEC 27001 Lead Auditor and Internal Auditor, 27001, 27002 and 27007 Foundation (ITCERTS, 2026) · introductory courses by Google, Cisco, Microsoft and FGV",
 
         // About
         "about-eyebrow": "Character sheet",
